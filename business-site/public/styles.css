@@ -6,7 +6,7 @@
                 Pick a dark colour: white text on it must reach 4.5:1.
                 Check at https://webaim.org/resources/contrastchecker/
    --brand-ink  The text colour on top of --brand. Keep it white.
-   Also change <meta name="theme-color"> in index.html and 404.html.
+   Also change the colour in favicon.svg and site.webmanifest.
    ===================================================================== */
 :root {
   --brand: #2a45b0;
