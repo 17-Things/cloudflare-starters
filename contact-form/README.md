@@ -48,7 +48,7 @@ You change four things. You do not need to touch any code.
 | What | File | Where |
 |---|---|---|
 | Your business facts | `public/index.html` | The **EDIT ME** block at the top (lines 4 to 28) lists every fact. Lines you can change end in `<!-- edit -->`. |
-| Your brand colour | `public/styles.css` | Line 7: `--brand: #2b6a6c;`. Every other colour is worked out from it. |
+| Your brand colour | `public/styles.css` | Line 7: `--brand: #355e45;`. Every other colour is worked out from it. |
 | Your photos | `public/img/` | See **Photos** below. |
 | The other pages | `public/thanks.html`, `public/404.html`, `public/privacy.html` | The same facts appear in the header and footer. Lines you can change end in `<!-- edit -->`. |
 
@@ -101,7 +101,7 @@ Any shape of photo works: the page crops it to fit.
 
 ## Fonts
 
-The fonts are Manrope and Newsreader. They live in `public/fonts/`, under the
+The fonts are Figtree (text) and Fraunces (headings). They live in `public/fonts/`, under the
 SIL Open Font Licence (see the `OFL-*.txt` files there). The site loads them
 from your own address, not from Google.
 

@@ -53,7 +53,7 @@ for (const file of pages) {
 const css = readFileSync(join(root, 'styles.css'), 'utf8');
 const brand = css.match(/--brand:\s*(#[0-9a-fA-F]{6})/)?.[1];
 if (!brand) {
-  problems.push('styles.css: --brand must be a 6-digit hex colour, like #2b6a6c');
+  problems.push('styles.css: --brand must be a 6-digit hex colour, like #355e45');
 } else {
   const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
   const [r, g, b] = [1, 3, 5].map((i) => lin(parseInt(brand.slice(i, i + 2), 16) / 255));
