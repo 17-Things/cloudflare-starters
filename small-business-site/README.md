@@ -122,9 +122,9 @@ WhatsApp or Facebook. Make a 1200 × 630 JPG of your best work, put it in
 | Header, footer, call bar, meta tags | `src/layout.mjs` |
 | The form checks and the slider | `src/main.js` |
 
-The headings use **Bricolage Grotesque**, a free font under the SIL Open Font
-License. It is stored in `public/fonts/` with its licence, so it never loads
-from Google. The body text uses your device's own font.
+The text uses **Geist**, and the small labels use **Geist Mono**. Both are free
+fonts under the SIL Open Font License. They are stored in `public/fonts/` with
+their licences, so they never load from Google.
 
 ## Ask ChatGPT or Claude to make the changes
 
@@ -242,5 +242,5 @@ limits. Checked October 2026:
 
 Made by [17 Things](https://17things.co.uk/cloudflare-free-plan). Code under
 the MIT licence. Photos in `public/img/` are not covered by the MIT licence:
-see `public/img/CREDITS.md`. The font in `public/fonts/` is under the SIL Open
+see `public/img/CREDITS.md`. The fonts in `public/fonts/` are under the SIL Open
 Font License.

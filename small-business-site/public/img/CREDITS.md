@@ -27,6 +27,7 @@ WebP. Each photo has three sizes: `name-640.webp`, `name-1024.webp` and
 ## Other files
 
 - `/apple-touch-icon.png` and the favicon: the dovetail mark, made for this template (MIT).
-- `/fonts/bricolage-grotesque-latin-wght.woff2`: Bricolage Grotesque, © The
-  Bricolage Grotesque Project Authors, under the SIL Open Font License 1.1.
-  See `/fonts/OFL-bricolage-grotesque.txt`.
+- `/fonts/geist-latin-wght.woff2`: Geist, © The Geist Project Authors, under
+  the SIL Open Font License 1.1. See `/fonts/OFL-geist.txt`.
+- `/fonts/geist-mono-latin-wght.woff2`: Geist Mono, © The Geist Project Authors,
+  under the SIL Open Font License 1.1. See `/fonts/OFL-geist-mono.txt`.

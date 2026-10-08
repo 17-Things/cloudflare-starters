@@ -59,7 +59,7 @@ writeFileSync(
 writeFileSync(
   join(dist, 'site.webmanifest'),
   JSON.stringify({
-    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#f6f3ee', theme_color: '#1c2430',
+    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#fafaf8', theme_color: '#1c1b19',
     icons: [
       { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
       { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
