@@ -1,0 +1,5 @@
+# The secret key for your Turnstile widget (Cloudflare dashboard → Turnstile).
+# This is Cloudflare's always-pass test secret. Replace it before you go live.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+# The password for the /messages page. The user name can be anything.
+ADMIN_PASSWORD=choose-a-long-password

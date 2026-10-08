@@ -1,0 +1,31 @@
+{
+  // A one-page website with a contact form.
+  // The pages are files, served free and unlimited. A small Worker runs only
+  // for /api/* and /messages: it checks Turnstile, saves each message to a
+  // D1 database, and shows them to you behind a password.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "contact-form-site",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*", "/messages"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      // The deploy button creates a new database and replaces this ID.
+      "database_name": "contact-form-messages",
+      "database_id": "3ae290ac-1b1e-473a-8a98-a8d59a6c2e31",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Cloudflare's always-pass test key, so the form works straight away.
+    // Replace it with your own site key from Cloudflare → Turnstile.
+    "TURNSTILE_SITE_KEY": "1x00000000000000000000AA"
+  },
+  "observability": { "enabled": true }
+}

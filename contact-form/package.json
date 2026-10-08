@@ -1,0 +1,31 @@
+{
+  "name": "contact-form-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A one-page small business website with a spam-protected contact form, free on Cloudflare.",
+  "scripts": {
+    "dev": "wrangler d1 migrations apply DB --local && wrangler dev",
+    "predeploy": "wrangler d1 migrations apply DB --remote",
+    "deploy": "wrangler deploy",
+    "check": "wrangler deploy --dry-run"
+  },
+  "cloudflare": {
+    "bindings": {
+      "TURNSTILE_SITE_KEY": {
+        "description": "Your Turnstile **site key** (Cloudflare dashboard → Turnstile → Add widget). The default is Cloudflare's always-pass test key."
+      },
+      "TURNSTILE_SECRET_KEY": {
+        "description": "Your Turnstile **secret key**, from the same widget. The default always passes, so replace it before you go live."
+      },
+      "ADMIN_PASSWORD": {
+        "description": "The password for the `/messages` page, where you read what people send. Use a long one."
+      },
+      "DB": {
+        "description": "A free D1 database that keeps the messages."
+      }
+    }
+  },
+  "devDependencies": {
+    "wrangler": "^4.148.0"
+  }
+}
