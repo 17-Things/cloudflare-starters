@@ -152,7 +152,7 @@ export function page({ path, title, description, body, graph = [], crumbs, type 
 <link rel="stylesheet" href="${ASSETS.css}">
 ${COOKIE_TRACKING ? '<link rel="stylesheet" href="/vendor/cookieconsent-3.1.0.css">\n' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#2f6f4f">
+<meta name="theme-color" content="#a8461f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:locale" content="en_GB">

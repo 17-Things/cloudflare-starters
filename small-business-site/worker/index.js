@@ -151,7 +151,7 @@ function json(body, status = 200, headers = {}) {
 function html(title, body, status = 200) {
   return new Response(
     `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${escapeHtml(title)}</title>
-<style>body{margin:0 auto;max-width:44rem;padding:2rem 1.25rem;font:17px/1.6 system-ui,sans-serif;color:#1d1d1b;background:#fbfaf7}article{background:#fff;border:1px solid #e4e1da;border-radius:4px;padding:1rem 1.25rem;margin:0 0 1rem}.meta{color:#5c5c57;font-size:.9rem;margin:0 0 .5rem}a{color:#2f6f4f}</style>
+<style>body{margin:0 auto;max-width:44rem;padding:2rem 1.25rem;font:17px/1.6 system-ui,sans-serif;color:#1d1d1b;background:#fbfaf7}article{background:#fff;border:1px solid #e4e1da;border-radius:4px;padding:1rem 1.25rem;margin:0 0 1rem}.meta{color:#5c5c57;font-size:.9rem;margin:0 0 .5rem}a{color:#a8461f}</style>
 </head><body>${body}</body></html>`,
     { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } }
   );

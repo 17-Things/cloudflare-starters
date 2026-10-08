@@ -42,13 +42,13 @@ for (const [path, render] of pages) {
 const letter = (site.name.trim()[0] || '•').replace(/[<&>"]/g, '');
 writeFileSync(
   join(dist, 'favicon.svg'),
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#2f6f4f"/><text x="32" y="44" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">${letter}</text></svg>\n`
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#a8461f"/><text x="32" y="44" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">${letter}</text></svg>\n`
 );
 
 writeFileSync(
   join(dist, 'site.webmanifest'),
   JSON.stringify({
-    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#fbfaf7', theme_color: '#2f6f4f',
+    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#fbfaf7', theme_color: '#a8461f',
     icons: [{ src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
   })
 );
