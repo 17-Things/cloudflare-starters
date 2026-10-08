@@ -1,0 +1,3 @@
+# The password for the /enquiries page, where you read the enquiries.
+# The user name can be anything. The page stays locked until you change this.
+ADMIN_PASSWORD=choose-a-long-password

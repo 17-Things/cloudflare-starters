@@ -1,0 +1,39 @@
+{
+  // A small business website with an enquiry form.
+  // The pages are files in dist/, served free and unlimited. A small Worker runs
+  // only for /api/* and /enquiries: it saves each enquiry to KV and shows them
+  // to you behind a password.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "small-business-site",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  // Builds dist/ from src/ before every deploy and while `wrangler dev` runs.
+  "build": { "command": "node src/build.mjs", "watch_dir": ["src", "public"] },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*", "/enquiries"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ENQUIRIES",
+      // The deploy button creates a new KV namespace and replaces this ID.
+      "id": "00000000000000000000000000000000"
+    }
+  ],
+  // Optional: email each enquiry to you with Cloudflare Email Routing (free).
+  //   1. Your domain must be on Cloudflare. Dashboard → your domain → Email →
+  //      Email Routing: turn it on, and add your inbox as a destination address.
+  //      Click the link in the email Cloudflare sends you.
+  //   2. Remove the // from the "send_email" line below and put in that inbox.
+  //   3. Set ENQUIRY_TO to the same inbox, and ENQUIRY_FROM to an address on your
+  //      domain, for example "Website <website@example.co.uk>".
+  // "send_email": [{ "name": "EMAIL", "destination_address": "you@example.co.uk" }],
+  "vars": {
+    "ENQUIRY_TO": "",
+    "ENQUIRY_FROM": ""
+  },
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "small-business-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A small business website with services, about and contact pages and an enquiry form, free on Cloudflare.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node src/build.mjs",
+    "dev": "wrangler dev",
+    "deploy": "node src/build.mjs && wrangler deploy",
+    "check": "node src/build.mjs && wrangler deploy --dry-run",
+    "check:site": "node scripts/check.mjs"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ENQUIRIES": {
+        "description": "A free KV namespace that keeps every enquiry sent through the contact form."
+      },
+      "ADMIN_PASSWORD": {
+        "description": "The password for the `/enquiries` page, where you read what people send. The user name can be anything. Use a long password."
+      },
+      "ENQUIRY_TO": {
+        "description": "Optional. The inbox that gets a copy of each enquiry by email. Leave it empty for now: it works only after you set up Cloudflare Email Routing (see README)."
+      },
+      "ENQUIRY_FROM": {
+        "description": "Optional. The sender address for those emails, on your own domain, for example `Website <website@example.co.uk>`. Leave it empty for now."
+      }
+    }
+  },
+  "devDependencies": {
+    "wrangler": "^4.148.0"
+  }
+}
