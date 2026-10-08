@@ -1,77 +1,114 @@
-# A calm one-page website with a contact form, on Cloudflare
+# One-page website with a contact form
 
-A one-page website for a counsellor, therapist or any quiet, personal
-service. The contact form is the star:
+![The Fernlea Counselling example site: a calm headline, an arched photo of a quiet room and a "Book a free 20-minute call" button.](https://raw.githubusercontent.com/17-Things/cloudflare-starters/main/screenshots/contact-form.jpg)
 
-- It checks each box when the visitor leaves it, and explains any problem in plain words.
-- It sends without leaving the page, then says "Thank you, Sam" and what happens next.
-- It stops spam with **Turnstile**, Cloudflare's free check that a visitor is a person.
-- It saves every message in a free **D1** database.
-- It gives you an inbox at `/messages`, behind a password. You can search it and mark messages as replied.
-
-It also has real photos, a light and a dark look, opening hours with an
-"Open now" badge, and a one-breath exercise for anxious visitors.
-
-All of it runs on Cloudflare's free plan. The business in it, **Fernlea
-Counselling**, is made up. Replace it with yours.
+For a counsellor, therapist or other quiet, personal service that wants
+people to get in touch through a safe, simple form.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/17-Things/cloudflare-starters/tree/main/contact-form)
 
-## What the button does
+The site comes filled in for a made-up practice, Fernlea Counselling. You
+change the words and photos to make it yours.
 
-1. Copies this folder into a new repository in your GitHub or GitLab account.
-2. Creates the D1 database and sets up its table.
-3. Asks for two secrets, then puts the site live on a free `workers.dev` address.
+## What you get
 
-## The two secrets
+- **A contact form** with name, email, phone (optional), a topic (optional)
+  and a message. It checks each box when the visitor leaves it and explains
+  any problem in plain words. It sends without leaving the page, then says
+  "Thank you, Sam" and what happens next.
+- **A spam check** with Turnstile, Cloudflare's free check that a visitor is a
+  person, plus a hidden field that catches bots.
+- **Every message saved** in a free Cloudflare D1 database.
+- **An inbox at `/messages`**, behind a password. It shows the newest 200
+  messages. You can search them, reply by email or call with one tap, and mark
+  each one as replied so the **Waiting** list shows only what is left.
+- A "thank you" page for visitors whose browser blocks scripts.
+- Topic buttons ("Anxiety and worry", "Grief and loss"...) that fill in the
+  form's topic for the visitor.
+- Three session types with prices, a note on lower-cost places, client quotes,
+  a section about the room, an about section and questions and answers.
+- Opening hours with today's row marked and an **"Open now"** badge.
+- A one-breath exercise for anxious visitors.
+- On phones, a bar at the bottom with **Call** and **Book a free call**.
+- Dark mode, a print layout, a privacy page, a "page not found" page,
+  structured data for Google, a sharing preview image and security headers.
 
-- **TURNSTILE_SECRET_KEY**: the default is Cloudflare's always-pass test key, so the
-  form works at once. Before you go live, open **Turnstile** in the Cloudflare
-  dashboard, add a widget for your domain, and put its secret key here and its site
-  key in the `TURNSTILE_SITE_KEY` variable.
-- **ADMIN_PASSWORD**: the password for `/messages`. The user name can be anything.
-  The page stays locked until you change it from the default.
+## What the Deploy button does
 
-## Read your messages
+1. It copies this folder into a new repository in your GitHub or GitLab account.
+2. It creates the D1 database and sets up its table.
+3. It asks for your Turnstile keys and a password, then puts the site live on
+   a free `workers.dev` address.
 
-Go to `https://<your-site>/messages` and sign in with the password. The newest
-200 messages show first. For each one you can:
-
-- reply by email or call back, with one tap
-- mark it as replied, so the **Waiting** list shows only what is left
-- search by name, email address or any word
+You need a free Cloudflare account and a free GitHub or GitLab account.
 
 ## Make it yours
 
-You change four things. You do not need to touch any code.
+Most of the site is in one file: **`public/index.html`**. You can edit it on
+GitHub in your browser. Each time you save (commit), the site updates in about
+a minute.
 
-| What | File | Where |
-|---|---|---|
-| Your business facts | `public/index.html` | The **EDIT ME** block at the top (lines 4 to 28) lists every fact. Lines you can change end in `<!-- edit -->`. |
-| Your brand colour | `public/styles.css` | Line 7: `--brand: #2b6a6c;`. Every other colour is worked out from it. |
-| Your photos | `public/img/` | See **Photos** below. |
-| The other pages | `public/thanks.html`, `public/404.html`, `public/privacy.html` | The same facts appear in the header and footer. Lines you can change end in `<!-- edit -->`. |
+### 1. Your business facts
 
-Also change these, which are easy to miss:
+At the top of `public/index.html` there is an **EDIT ME** block. It lists each
+fact the page uses now: name, phone, mobile for texts, email, address, prices
+and web address. Find each old value and replace it **everywhere** in the file.
 
-- **Google's business facts**: the JSON-LD block in `index.html` (it starts at line 63).
-  It holds your name, address, phone, prices and opening hours.
-- **Opening hours**: the table under `OPENING HOURS` in `index.html`. The
-  `data-open` and `data-close` times drive the "Open now" badge.
-- **Your web address**: in `index.html` (the `canonical` and `og:` lines),
-  `privacy.html`, `public/robots.txt` and `public/sitemap.xml`.
-- **The favicon colour**: `public/favicon.svg`, line 3.
-- **Client quotes**: only use words that clients agreed you can share.
+For example, to change the phone number, replace both forms of it:
 
-Commit, and Cloudflare puts the new version live in about a minute.
+```
+01632 960418      →  01234 567890      (the number people see)
++441632960418     →  +441234567890     (the number in links: +44, no first 0, no spaces)
+```
 
-Then run `npm run check`. It finds common mistakes: a missing image, an image
-with no alt text, a broken link, broken JSON-LD, or a brand colour that is too
-light for white text.
+### 2. Your words
 
-### Ask ChatGPT or Claude to do it
+Every line with words to change ends with `<!-- edit -->`. Change the text
+between the tags. Keep the tags, and keep every `class="..."` and `id="..."`.
+Only use client quotes that clients agreed you can share.
 
-Paste `public/index.html` and this prompt:
+### 3. The places that are easy to miss
+
+| What | Where |
+|---|---|
+| Google's business facts (name, address, phone, prices, hours) | The structured data block (`application/ld+json`) in the `<head>` of `index.html` |
+| Opening hours | The table under `OPENING HOURS` in `index.html`. The `data-open` and `data-close` times (24-hour clock) drive the "Open now" badge |
+| Your web address | `index.html` (the `canonical` and `og:` lines), `privacy.html`, `public/robots.txt` and `public/sitemap.xml` |
+| The other pages | `public/thanks.html`, `public/404.html` and `public/privacy.html`: lines that end with `<!-- edit -->` |
+
+### 4. Your colour
+
+Open `public/styles.css` and change `--brand` near the top
+(now `#355e45`). The other colours are worked out from it. Pick a dark colour,
+because the buttons put white text on it: it needs 4.5:1 contrast or more.
+`npm run check` warns you if it is too light.
+
+Then put the same colour in these places:
+
+| File | What to change |
+|---|---|
+| `public/favicon.svg` | The `fill` colour (the icon in the browser tab) |
+| `public/site.webmanifest` | `theme_color` |
+| `public/apple-touch-icon.png`, `public/icon-512.png` | Replace them with 180 × 180 and 512 × 512 PNGs of your icon |
+
+### 5. Your photos
+
+The photos are **placeholders** from Pexels. They are not covered by the MIT
+licence. Replace them with your own: your room, your desk, your view. Real
+photos build more trust than stock ones.
+
+1. Make WebP files at the widths in the file names, for example
+   `tea-480.webp` and `tea-800.webp`. [Squoosh](https://squoosh.app) is free.
+2. Save them in `public/img/` with the same names.
+3. Change each photo's `alt` text in the HTML to describe your photo.
+4. Delete each replaced photo's line in `public/img/CREDITS.md`.
+
+Any shape of photo works: the page crops it to fit.
+
+### Let an AI assistant do the edits
+
+Copy `public/index.html` into ChatGPT, Claude or a similar assistant, then
+paste this prompt:
 
 > Here is my website's index.html. Change only the text in the EDIT ME block,
 > the lines marked `<!-- edit -->`, and the JSON-LD block. Keep every class
@@ -79,42 +116,30 @@ Paste `public/index.html` and this prompt:
 > [name, what you do, town, address, phone, mobile for texts, email, prices,
 > opening hours, a few lines about you].
 
-Then do the same for `thanks.html`, `404.html` and `privacy.html`. To change
-the colour, ask for "a darker shade that has at least 4.5:1 contrast with white".
+Then do the same for `thanks.html`, `404.html` and `privacy.html`.
 
-## Photos
+### Check your changes
 
-The photos are placeholders from Pexels. **They are not covered by the MIT
-licence.** See `public/img/CREDITS.md` for who took each one. Please replace
-them with your own: your room, your desk, your view. Real photos build more
-trust than stock ones.
+If you have Node.js on your computer, run `npm install` once. Then
+`npm run check` finds a missing image, an image with no alt text, a broken
+link, broken structured data, or a brand colour that is too light.
 
-To swap a photo:
+## Passwords and keys
 
-1. Make WebP files at the widths in the file names (for example `tea-480.webp`
-   and `tea-800.webp`). Free tool: [Squoosh](https://squoosh.app).
-2. Save them in `public/img/` with the same names. The page picks them up.
-3. Change the photo's `alt` text in the HTML so it describes your photo.
-4. Update `public/img/CREDITS.md`.
+| Name | What it is | Where to set it |
+|---|---|---|
+| `TURNSTILE_SITE_KEY` | The public Turnstile key that shows the spam check on the page | `vars` in `wrangler.jsonc` |
+| `TURNSTILE_SECRET_KEY` | The secret Turnstile key that the server uses to check each answer | The Deploy button asks for it. To change it later: Cloudflare dashboard → **Workers & Pages** → your site → **Settings → Variables and Secrets** |
+| `ADMIN_PASSWORD` | The password for `/messages`. Use any user name with it. The page stays locked until you change it from the default. | Same as above |
 
-Any shape of photo works: the page crops it to fit.
+The keys start as Cloudflare's always-pass **test** keys, so the form works at
+once. **Replace them before you go live:** in the Cloudflare dashboard open
+**Turnstile → Add widget**, add your domain, then copy the site key and the
+secret key into the places above.
 
-## Fonts
+To read your messages, go to `https://<your-site>/messages` and sign in.
 
-The fonts are Manrope and Newsreader. They live in `public/fonts/`, under the
-SIL Open Font Licence (see the `OFL-*.txt` files there). The site loads them
-from your own address, not from Google.
-
-## Use your own domain
-
-In the Cloudflare dashboard, open **Workers & Pages**, select the Worker, then
-**Settings → Domains & Routes → Add → Custom domain**.
-
-**Before you move your domain's nameservers to Cloudflare, copy your email
-records.** Check that every MX and TXT record from your old DNS is in
-Cloudflare's DNS list before you switch. If one is missing, your email stops.
-
-## Run it on your computer
+### Work on your own computer (optional)
 
 ```bash
 npm install
@@ -122,15 +147,57 @@ cp .dev.vars.example .dev.vars   # then set a password in .dev.vars
 npm run dev                      # sets up a local database, then starts the site
 ```
 
-## Limits on the free plan
+## Costs and limits
 
-The pages are files: free and unlimited. The form uses the Worker, which allows
-100,000 requests a day on the free plan, and D1, which allows 5 GB. A small
-business will not come near either. Checked October 2026:
+- The pages are files. Visits to them are free and unlimited.
+- The form and the inbox use a Worker. The free plan allows 100,000 Worker
+  requests a day.
+- D1 allows 5 GB of storage on the free plan.
+- Turnstile is free.
+
+Checked October 2026:
 [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/).
+
+## Connect your domain
+
+In the Cloudflare dashboard, open **Workers & Pages**, select your site, then
+**Settings → Domains & Routes → Add → Custom domain**. Your domain must
+already use Cloudflare for its DNS. Then add the domain to your Turnstile
+widget too.
+
+> **Warning: moving your domain's DNS to Cloudflare can stop your email.**
+> Before you change your nameservers, check that every **MX** and **TXT**
+> record from your old DNS is also in Cloudflare's DNS list. This matters most
+> if your email comes from Google Workspace, Microsoft 365 or your old host.
+> If one record is missing, email to your domain stops arriving.
+
+## Files
+
+```
+public/
+  index.html        The page, with the EDIT ME block at the top
+  styles.css        The design. Change --brand near the top
+  app.js            The form checks, Turnstile, the "Open now" badge and the breathing exercise
+  thanks.html       The "thank you" page
+  privacy.html      The privacy page
+  404.html          The "page not found" page
+  img/              Photos, and CREDITS.md for the placeholders
+  fonts/            Fraunces and Figtree, with their licences
+  favicon.svg, apple-touch-icon.png, icon-512.png, site.webmanifest   Icons
+  robots.txt, sitemap.xml    For search engines
+  _headers          Security headers
+src/index.js        Checks Turnstile, saves messages and shows the /messages inbox
+migrations/         The database tables
+scripts/check.mjs   The checks that `npm run check` runs
+wrangler.jsonc      Cloudflare settings: database, Turnstile site key
+.dev.vars.example   The secret key and password for local testing
+```
+
+The fonts are stored in `public/fonts/`, so no visitor data goes to Google.
 
 ---
 
-Made by [17 Things](https://17things.co.uk/cloudflare-free-plan). Code under
-the MIT licence. Photos in `public/img/` are not covered by the MIT licence;
-see `public/img/CREDITS.md`.
+Made by [17 Things](https://17things.co.uk/cloudflare-free-plan). The code is
+under the MIT licence. The photos in `public/img/` and the fonts in
+`public/fonts/` are not: see `public/img/CREDITS.md` and the licence files in
+`public/fonts/`.

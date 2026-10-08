@@ -14,7 +14,7 @@ export const abs = (path) => SITE_URL + path;
 
 // Filled in by build.mjs with fingerprinted file names.
 export const ASSETS = { css: '/styles.css', js: '/main.js', consent: '/consent.js' };
-export const FONT = '/fonts/bricolage-grotesque-latin-wght.woff2';
+export const FONT = '/fonts/geist-latin-wght.woff2';
 // The one inline script: it tells the CSS that JavaScript runs. build.mjs adds its hash to the CSP.
 export const JS_FLAG = "document.documentElement.classList.add('js')";
 
@@ -32,7 +32,7 @@ export const addressLine = () => Object.values(site.address).filter(Boolean).joi
 
 // ---- Brand colour --------------------------------------------------------
 // Works out readable text colours for whatever brandColour is set in site.mjs.
-const CHARCOAL = '#1c2430';
+const CHARCOAL = '#1c1b19';
 const rgb = (hex) => {
   const h = hex.replace('#', '');
   const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
@@ -49,7 +49,7 @@ export const contrast = (a, b) => {
 export function theme() {
   const brand = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(site.brandColour || '') ? site.brandColour : '#f5b301';
   const ink = contrast(brand, CHARCOAL) >= contrast(brand, '#ffffff') ? CHARCOAL : '#ffffff';
-  // On the charcoal bands the brand colour is used for small text, so it must reach 4.5:1.
+  // On the graphite bands the brand colour is used for small text, so it must reach 4.5:1.
   const onDark = contrast(brand, CHARCOAL) >= 4.5 ? brand : '#ffffff';
   return { brand, ink, onDark, inkContrast: contrast(brand, ink) };
 }
@@ -73,7 +73,7 @@ export function picture(key, { w = 1200, h = 800, sizes = '100vw', eager = false
 // ---- Small pieces used on several pages ------------------------------------
 // The dovetail mark next to the name. A dovetail is the joint joiners use for drawers.
 export const mark = (size = 28) =>
-  `<svg class="mark" width="${size}" height="${size}" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="6" fill="var(--brand)"/><path d="M8 7h16l-4 8h4v10H8V15h4z" fill="var(--brand-ink)"/></svg>`;
+  `<svg class="mark" width="${size}" height="${size}" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="5" fill="var(--brand)"/><path d="M8 7h16l-4 8h4v10H8V15h4z" fill="var(--brand-ink)"/></svg>`;
 
 export const stars = () =>
   `<span class="stars" aria-hidden="true">${'<svg viewBox="0 0 20 20" width="16" height="16"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3.1-5.4 3.1 1.2-6L1.3 7.8l6.1-.7z"/></svg>'.repeat(5)}</span>`;
@@ -313,8 +313,8 @@ ${preload}<link rel="stylesheet" href="${ASSETS.css}">
 ${COOKIE_TRACKING ? '<link rel="stylesheet" href="/vendor/cookieconsent-3.1.0.css">\n' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#12161d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:locale" content="en_GB">
