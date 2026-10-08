@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+The MIT licence above covers the code. It does not cover:
+
+- The photos in each template's public/img/ folder. They are examples from
+  Pexels and Unsplash, used under their own licences
+  (https://www.pexels.com/license/ and https://unsplash.com/license).
+  Each template's public/img/CREDITS.md lists them. Replace them with your own.
+- The fonts in each template's public/fonts/ folder. They are under the SIL
+  Open Font License, in the OFL text file next to each font.

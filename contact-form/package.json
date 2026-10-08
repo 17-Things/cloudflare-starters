@@ -2,12 +2,12 @@
   "name": "contact-form-site",
   "version": "1.0.0",
   "private": true,
-  "description": "A one-page small business website with a spam-protected contact form, free on Cloudflare.",
+  "description": "A calm one-page website for a counsellor or therapist, with a spam-protected contact form and an inbox, free on Cloudflare.",
   "scripts": {
     "dev": "wrangler d1 migrations apply DB --local && wrangler dev",
     "predeploy": "wrangler d1 migrations apply DB --remote",
     "deploy": "wrangler deploy",
-    "check": "wrangler deploy --dry-run"
+    "check": "node scripts/check.mjs && wrangler deploy --dry-run"
   },
   "cloudflare": {
     "bindings": {

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="Placeholder image">
-  <rect width="600" height="450" fill="#f1efe9"/>
-  <rect x="1" y="1" width="598" height="448" fill="none" stroke="#c9c5bc" stroke-width="2" stroke-dasharray="10 8"/>
-  <circle cx="230" cy="170" r="38" fill="#c9c5bc"/>
-  <path d="M120 340 L250 220 L330 290 L400 230 L490 340 Z" fill="#c9c5bc"/>
-  <text x="300" y="400" font-family="system-ui, sans-serif" font-size="22" fill="#5c5c57" text-anchor="middle">Your photo here</text>
-</svg>

@@ -11,7 +11,7 @@
     "directory": "./public",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*", "/messages"]
+    "run_worker_first": ["/api/*", "/messages", "/messages/*"]
   },
   "d1_databases": [
     {

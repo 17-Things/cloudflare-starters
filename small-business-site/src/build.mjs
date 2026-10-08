@@ -3,8 +3,8 @@ import { mkdirSync, rmSync, writeFileSync, readFileSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE_URL, INDEXABLE, COOKIE_TRACKING, site, services, faqs, redirects, analytics } from './site.mjs';
-import { ASSETS } from './layout.mjs';
+import { SITE_URL, INDEXABLE, COOKIE_TRACKING, site, services, faqs, redirects, analytics, towns } from './site.mjs';
+import { ASSETS, JS_FLAG, theme } from './layout.mjs';
 import { pages, hidden } from './pages.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -18,10 +18,21 @@ if (existsSync(join(root, 'public'))) cpSync(join(root, 'public'), dist, { recur
 // The cookie banner library is copied only when a cookie-setting tag is in use.
 if (COOKIE_TRACKING) cpSync(join(root, 'src/vendor'), join(dist, 'vendor'), { recursive: true });
 
+const brand = theme();
+if (brand.brand !== site.brandColour) console.warn(`site.mjs: brandColour "${site.brandColour}" is not a colour like '#f5b301'. Using ${brand.brand}.`);
+if (brand.inkContrast < 4.5) console.warn(`site.mjs: text on brandColour ${brand.brand} is hard to read (${brand.inkContrast.toFixed(1)}:1, needs 4.5:1). Pick a lighter or darker colour.`);
+
 // Fingerprint the CSS and JS so browsers can cache them for a year.
 const bundles = [['css', 'styles.css'], ['js', 'main.js'], ...(COOKIE_TRACKING ? [['consent', 'consent.js']] : [])];
 for (const [key, file] of bundles) {
   let src = readFileSync(join(root, 'src', file), 'utf8');
+  if (key === 'css') {
+    // The brand colour from site.mjs, and text colours that stay readable on it.
+    src = src
+      .replace(/--brand: [^;]+;/, `--brand: ${brand.brand};`)
+      .replace(/--brand-ink: [^;]+;/, `--brand-ink: ${brand.ink};`)
+      .replace(/--brand-on-dark: [^;]+;/, `--brand-on-dark: ${brand.onDark};`);
+  }
   if (key === 'consent') {
     const ids = { ga4: analytics.ga4, googleAds: analytics.googleAds, metaPixel: analytics.metaPixel };
     src = src.replace('__TRACKING_IDS__', JSON.stringify(ids));
@@ -38,18 +49,21 @@ for (const [path, render] of pages) {
   writeFileSync(file, render());
 }
 
-// Favicon: the first letter of the business name on a coloured square.
-const letter = (site.name.trim()[0] || '•').replace(/[<&>"]/g, '');
+// Favicon: the dovetail mark in your brand colour.
 writeFileSync(
   join(dist, 'favicon.svg'),
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#a8461f"/><text x="32" y="44" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">${letter}</text></svg>\n`
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="${brand.brand}"/><path d="M8 7h16l-4 8h4v10H8V15h4z" fill="${brand.ink}"/></svg>
+`
 );
 
 writeFileSync(
   join(dist, 'site.webmanifest'),
   JSON.stringify({
-    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#fbfaf7', theme_color: '#a8461f',
-    icons: [{ src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
+    name: site.name, short_name: site.name, start_url: '/', display: 'browser', background_color: '#f6f3ee', theme_color: '#1c2430',
+    icons: [
+      { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
+      { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   })
 );
 
@@ -79,8 +93,9 @@ const cf = analytics.cloudflareToken;
 const csp = [
   "default-src 'self'",
   `img-src 'self' data:${google ? ' https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk' : ''}${meta ? ' https://www.facebook.com' : ''}`,
-  `script-src 'self'${google ? ' https://www.googletagmanager.com' : ''}${meta ? ' https://connect.facebook.net' : ''}${cf ? ' https://static.cloudflareinsights.com' : ''}`,
+  `script-src 'self' 'sha256-${createHash('sha256').update(JS_FLAG).digest('base64')}'${google ? ' https://www.googletagmanager.com' : ''}${meta ? ' https://connect.facebook.net' : ''}${cf ? ' https://static.cloudflareinsights.com' : ''}`,
   "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
   `connect-src 'self'${google ? ' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com' : ''}${meta ? ' https://www.facebook.com' : ''}${cf ? ' https://cloudflareinsights.com' : ''}`,
   `frame-src ${google ? 'https://td.doubleclick.net https://www.googletagmanager.com' : "'none'"}`,
   "form-action 'self'",
@@ -117,7 +132,11 @@ ${site.tagline}
 
 ## Services
 
-${services.map((s) => `- [${s.name}](${SITE_URL}/services/#${s.id}): ${s.summary}`).join('\n')}
+${services.map((s) => `- [${s.name}](${SITE_URL}/services/#${s.id}): ${s.summary}${s.priceFrom ? ` From ${s.priceFrom}${s.priceNote ? ` ${s.priceNote}` : ''}.` : ''}`).join('\n')}
+
+## Areas we cover
+
+${towns.map((t) => `- ${t.name}`).join('\n')}
 
 ## Questions and answers
 
@@ -131,7 +150,7 @@ ${[
   site.email && `- Email: ${site.email}`,
   Object.values(a).some(Boolean) && `- Address: ${Object.values(a).filter(Boolean).join(', ')}`,
   site.areaServed && `- Area served: ${site.areaServed}`,
-  ...site.hours.map((h) => `- Open: ${h.label}`),
+  ...site.hours.map((h) => `- Open: ${h.label}, ${h.time}`),
   ...site.social.map((s) => `- ${s.name}: ${s.url}`),
 ]
   .filter(Boolean)

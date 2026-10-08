@@ -1,0 +1,11 @@
+{
+  "name": "Wren & Rye Bakehouse",
+  "short_name": "Wren & Rye",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ],
+  "theme_color": "#9a3412",
+  "background_color": "#fbf7f0",
+  "display": "browser"
+}

@@ -1,5 +1,5 @@
 // Checks a running site: every page answers 200, has one h1, a description and valid
-// JSON-LD, and every internal link and file resolves.
+// JSON-LD, every photo has alt text and a size, and every internal link and file resolves.
 // Usage: node scripts/check.mjs http://localhost:8787   (or your live address)
 import { redirects } from '../src/site.mjs';
 
@@ -25,6 +25,10 @@ while (queue.length) {
     try { JSON.parse(m[1]); } catch { problems.push(`${p}: bad JSON-LD`); }
   }
   for (const m of html.matchAll(/<img(?![^>]*alt=)[^>]*>/g)) problems.push(`${p}: img without alt`);
+  for (const m of html.matchAll(/<img(?![^>]*width=)[^>]*>/g)) problems.push(`${p}: img without width and height`);
+  for (const m of html.matchAll(/srcset="([^"]+)"/g)) for (const part of m[1].split(',')) assets.add(part.trim().split(/\s+/)[0]);
+  const og = html.match(/<meta property="og:image" content="([^"]+)"/);
+  if (og) assets.add(new URL(og[1]).pathname);
   for (const m of html.matchAll(/href="(\/[^"#?]*)/g)) {
     if (seen.has(m[1]) || m[1].startsWith('/api')) continue;
     if (/\.\w+$/.test(m[1])) assets.add(m[1]); else queue.push(m[1]);

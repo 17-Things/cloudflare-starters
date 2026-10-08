@@ -1,58 +1,557 @@
 <!doctype html>
+<!--
+=======================================================================
+  EDIT ME: YOUR BUSINESS FACTS
+  -----------------------------------------------------------------------
+  This page is for a made-up bakery. To make it yours, find each value
+  in the left column and replace it EVERYWHERE in this file. Most values
+  appear more than once (header, hero, visit, footer, structured data).
+
+  Business name ......... Wren & Rye Bakehouse
+  Short name ............ Wren & Rye
+  Phone (as shown) ...... 01632 960123
+  Phone (for links) ..... +441632960123          (+44, no first 0, no spaces)
+  Email ................. hello@example.co.uk
+  Street ................ 14 Mill Lane
+  Town .................. Easterby
+  Postcode .............. EB1 4WR
+  Website address ....... https://www.example.co.uk/
+  Google reviews link ... https://www.google.com/maps/search/?api=1&query=Wren+%26+Rye+Bakehouse+Easterby
+  Directions link ....... https://www.google.com/maps/dir/?api=1&destination=14+Mill+Lane+Easterby+EB1+4WR
+  Instagram ............. https://www.instagram.com/your-account/
+  Facebook .............. https://www.facebook.com/your-page/
+  Rating ................ 4.9 from 212 Google reviews
+  Founded ............... 2014
+
+  OPENING HOURS are in three places. Change all three:
+    1. The hours table (search for: HOURS TABLE). The data-open and
+       data-close values use the 24-hour clock, for example 07:30.
+       The "Open now" badge reads them. Leave both empty on a closed day.
+    2. The structured data near the end of <head> (openingHoursSpecification).
+    3. The short line in the hero badge (search for: data-open-badge).
+
+  BRAND COLOUR: change --brand at the top of styles.css, and the
+  theme-color line below.
+
+  PHOTOS: are placeholders. Replace the files in img/ with your own
+  photos. Keep the same file names and widths, or change the names
+  below. Read img/CREDITS.md and README.md first.
+
+  Lines that hold text to change end with an "edit" comment.
+  Keep every class="..." and id="..." as it is.
+=======================================================================
+-->
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Change these three lines first. -->
-  <title>Your Business Name | What you do, where</title>
-  <meta name="description" content="One or two sentences on what you do and who for. Google often shows this under your name.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23222'/%3E%3C/svg%3E">
-  <style>
-    :root { --ink: #1d1d1b; --muted: #5c5c57; --paper: #fbfaf7; --line: #e4e1da; --accent: #2f6f4f; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font: 18px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); }
-    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
-    header { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--line); }
-    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: 0 0 1rem; }
-    h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
-    p { margin: 0 0 1rem; }
-    .lead { font-size: 1.2rem; color: var(--muted); }
-    .button { display: inline-block; background: var(--accent); color: #fff; padding: 0.8rem 1.4rem; text-decoration: none; font-weight: 600; border-radius: 4px; }
-    ul.services { padding: 0; list-style: none; display: grid; gap: 1rem; }
-    ul.services li { background: #fff; border: 1px solid var(--line); padding: 1rem 1.25rem; border-radius: 4px; }
-    footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; }
-    a { color: var(--accent); }
-  </style>
+
+  <!-- ===== PAGE TITLE AND SEARCH SNIPPET ===== -->
+  <title>Wren &amp; Rye Bakehouse | Sourdough and coffee, Easterby</title> <!-- edit: under 60 characters -->
+  <meta name="description" content="An independent bakery and café on Mill Lane, Easterby. Slow sourdough, laminated pastries, good coffee and breakfast until 2pm. Open Tuesday to Sunday."> <!-- edit -->
+  <link rel="canonical" href="https://www.example.co.uk/"> <!-- edit -->
+
+  <!-- ===== SHARING PREVIEW (Facebook, WhatsApp, LinkedIn, X) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Wren &amp; Rye Bakehouse"> <!-- edit -->
+  <meta property="og:title" content="Wren &amp; Rye Bakehouse | Sourdough and coffee, Easterby"> <!-- edit -->
+  <meta property="og:description" content="Slow sourdough, laminated pastries and good coffee on Mill Lane. Open Tuesday to Sunday."> <!-- edit -->
+  <meta property="og:url" content="https://www.example.co.uk/"> <!-- edit -->
+  <meta property="og:image" content="https://www.example.co.uk/img/og.jpg"> <!-- edit: your address + /img/og.jpg -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cups of flat white and a slice of cake on a wooden café table."> <!-- edit -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- ===== ICONS AND COLOUR ===== -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#fbf7f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/site.js" defer></script>
+
+  <!-- ===== STRUCTURED DATA FOR GOOGLE (keep it in step with the page) =====
+       Test it at https://search.google.com/test/rich-results
+       To add your map position, add this line after "address": {...},
+       "geo": { "@type": "GeoCoordinates", "latitude": 00.00000, "longitude": -0.00000 }, -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Wren & Rye Bakehouse",
+    "url": "https://www.example.co.uk/",
+    "telephone": "+441632960123",
+    "email": "hello@example.co.uk",
+    "image": "https://www.example.co.uk/img/og.jpg",
+    "priceRange": "£",
+    "servesCuisine": ["Bakery", "Café", "Breakfast"],
+    "acceptsReservations": false,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14 Mill Lane",
+      "addressLocality": "Easterby",
+      "postalCode": "EB1 4WR",
+      "addressCountry": "GB"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "16:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "16:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "14:00" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/your-account/",
+      "https://www.facebook.com/your-page/"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>Your Business Name</h1>
-      <p class="lead">What you do, for whom, and where, in one sentence a customer would say out loud.</p>
-      <a class="button" href="#contact">Get in touch</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="/" aria-label="Wren and Rye Bakehouse, home"> <!-- edit -->
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 5c7.7 0 13 4.9 13 11.2C29 22.6 23.6 27 16 27S3 22.6 3 16.2C3 9.9 8.3 5 16 5Z"/><path class="cut" fill="none" stroke="#fbf7f0" stroke-width="2" stroke-linecap="round" d="M10.5 11.5c1.6 1.7 2.4 3.7 2.4 6M15.6 10.6c1.6 1.9 2.4 4.1 2.4 6.6M20.7 11.5c1.4 1.7 2.1 3.6 2.1 5.7"/></svg>
+        <span>Wren <em>&amp;</em> Rye</span> <!-- edit -->
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Photos</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-ghost header-call" href="tel:+441632960123"> <!-- edit -->
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 3.5h3.2l1.6 4.2-2.1 1.5a11 11 0 0 0 7.1 7.1l1.5-2.1 4.2 1.6V19a1.6 1.6 0 0 1-1.7 1.5C10.4 20 4 13.6 3.5 5.2A1.6 1.6 0 0 1 5 3.5Z"/></svg>
+        <span class="short">Call</span><span class="long">01632 960123</span> <!-- edit -->
+      </a>
     </div>
   </header>
 
-  <main class="wrap">
-    <h2>What I do</h2>
-    <ul class="services">
-      <li><strong>First service.</strong> One line on what the customer gets.</li>
-      <li><strong>Second service.</strong> One line on what the customer gets.</li>
-      <li><strong>Third service.</strong> One line on what the customer gets.</li>
-    </ul>
+  <main id="main">
 
-    <h2>About</h2>
-    <p>Who you are, how long you have done this, and why a customer should pick you. Two or three sentences is plenty.</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Bakery and café · Easterby</p> <!-- edit -->
+          <h1 id="hero-title">Sourdough, good coffee and <em>slow mornings</em> on Mill Lane.</h1> <!-- edit -->
+          <p class="lead">We bake everything here from 4am. Come for a loaf, stay for a flat white and a cardamom knot by the window.</p> <!-- edit -->
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#menu">See what we bake</a>
+            <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=14+Mill+Lane+Easterby+EB1+4WR" rel="noopener"> <!-- edit -->
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              Get directions
+            </a>
+          </div>
+          <ul class="proof-row">
+            <li>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Wren+%26+Rye+Bakehouse+Easterby" rel="noopener"> <!-- edit -->
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span><strong>4.9</strong> on Google · 212 reviews</span> <!-- edit -->
+              </a>
+            </li>
+            <li>
+              <!-- Delightful touch 1: site.js turns this into "Open now · closes 4pm". Without JavaScript, this text shows. -->
+              <p class="open-badge" data-open-badge>Open Tuesday to Sunday from 7.30am</p> <!-- edit -->
+            </li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <!-- Placeholder photo. See img/CREDITS.md. Replace hero-480/800/1200.webp with your own (4:5 shape works best). -->
+          <picture>
+            <img src="/img/hero-800.webp"
+                 srcset="/img/hero-480.webp 480w, /img/hero-800.webp 800w, /img/hero-1200.webp 1200w"
+                 sizes="(min-width: 74rem) 34rem, (min-width: 56rem) 44vw, 100vw"
+                 width="800" height="1000" fetchpriority="high"
+                 alt="Three flat whites with leaf patterns and a slice of cake on a wooden table."> <!-- edit -->
+          </picture>
+          <p class="hero-note">“The cardamom knots sell out by eleven.”<small>Ellie, head baker</small></p> <!-- edit -->
+        </div>
+      </div>
+    </section>
 
-    <h2 id="contact">Contact</h2>
-    <p>Email <a href="mailto:hello@example.com">hello@example.com</a> or call <a href="tel:+440000000000">00000 000000</a>.</p>
-    <p>Open Monday to Friday, 9am to 5pm.</p>
+    <!-- ===== PROOF STRIP (facts with big numbers) ===== -->
+    <section class="facts" aria-label="Facts about us">
+      <ul class="wrap">
+        <li><span class="big">Since 2014</span><span class="small">baking on Mill Lane</span></li> <!-- edit -->
+        <li><span class="big">48 hours</span><span class="small">to make each sourdough</span></li> <!-- edit -->
+        <li><span class="big">5 out of 5</span><span class="small">food hygiene rating</span></li> <!-- edit -->
+        <li><span class="big">Dogs welcome</span><span class="small">water bowl by the door</span></li> <!-- edit -->
+      </ul>
+    </section>
+
+    <!-- ===== MENU (what we do) ===== -->
+    <section class="section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">What we bake</p>
+          <h2 id="menu-title">Made here, every morning, <em>by hand</em>.</h2> <!-- edit -->
+          <p>Flour from a mill forty miles away. Butter from one dairy. Nothing frozen, nothing from a packet. Prices are a guide; ask at the counter.</p> <!-- edit -->
+        </div>
+
+        <div class="menu-grid">
+          <article class="card reveal">
+            <!-- Placeholder photo. See img/CREDITS.md. -->
+            <picture>
+              <img src="/img/bread-800.webp" srcset="/img/bread-480.webp 480w, /img/bread-800.webp 800w"
+                   sizes="(min-width: 74rem) 23rem, (min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 100vw"
+                   width="800" height="600" loading="lazy" decoding="async"
+                   alt="Two dark-crusted sourdough loaves on a kitchen table."> <!-- edit -->
+            </picture>
+            <div class="card-body">
+              <h3>Sourdough bread</h3> <!-- edit -->
+              <p>Country white, seeded rye and a spelt loaf. Slow-proved for two days.</p> <!-- edit -->
+              <p class="price">from <span>£4.20</span></p> <!-- edit -->
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <picture>
+              <img src="/img/pastries-800.webp" srcset="/img/pastries-480.webp 480w, /img/pastries-800.webp 800w"
+                   sizes="(min-width: 74rem) 23rem, (min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 100vw"
+                   width="800" height="600" loading="lazy" decoding="async"
+                   alt="Golden croissants piled up in a bakery display."> <!-- edit -->
+            </picture>
+            <div class="card-body">
+              <h3>Pastries</h3> <!-- edit -->
+              <p>Croissants, pain au chocolat and our cardamom knots. Laminated over three days.</p> <!-- edit -->
+              <p class="price">from <span>£2.80</span></p> <!-- edit -->
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <picture>
+              <img src="/img/barista-800.webp" srcset="/img/barista-480.webp 480w, /img/barista-800.webp 800w"
+                   sizes="(min-width: 74rem) 23rem, (min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 100vw"
+                   width="800" height="600" loading="lazy" decoding="async"
+                   alt="A barista pours steamed milk into a cup to make a leaf pattern."> <!-- edit -->
+            </picture>
+            <div class="card-body">
+              <h3>Coffee and tea</h3> <!-- edit -->
+              <p>A seasonal espresso from a small roaster, plus loose-leaf tea and proper hot chocolate.</p> <!-- edit -->
+              <p class="price">from <span>£2.60</span></p> <!-- edit -->
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <picture>
+              <img src="/img/brunch-800.webp" srcset="/img/brunch-480.webp 480w, /img/brunch-800.webp 800w"
+                   sizes="(min-width: 74rem) 23rem, (min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 100vw"
+                   width="800" height="600" loading="lazy" decoding="async"
+                   alt="Avocado on toasted sourdough with a poached egg on a white plate."> <!-- edit -->
+            </picture>
+            <div class="card-body">
+              <h3>Breakfast and lunch</h3> <!-- edit -->
+              <p>Eggs on our toast until 11.30am. Soup, toasties and salads until 2pm.</p> <!-- edit -->
+              <p class="price">from <span>£7.50</span></p> <!-- edit -->
+            </div>
+          </article>
+
+          <!-- Delightful touch 2: the "Today's bakes" chalkboard. Change the list as often as you like. -->
+          <div class="chalkboard reveal" role="group" aria-labelledby="board-title">
+            <svg class="doodle" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M24 44V14"/><path d="M24 20c-5-1-8-4-8-9 5 1 8 4 8 9Zm0 0c5-1 8-4 8-9-5 1-8 4-8 9Zm0 9c-5-1-8-4-8-9 5 1 8 4 8 9Zm0 0c5-1 8-4 8-9-5 1-8 4-8 9Zm0 9c-5-1-8-4-8-9 5 1 8 4 8 9Zm0 0c5-1 8-4 8-9-5 1-8 4-8 9Z"/><path d="M24 14V5"/></g></svg>
+            <h3 id="board-title">Today’s bakes</h3>
+            <p class="date">Out of the oven by 8am</p> <!-- edit -->
+            <ul>
+              <li><span>Cardamom knots</span><span class="dots" aria-hidden="true"></span><span>£3.40</span></li> <!-- edit -->
+              <li><span>Orange morning buns</span><span class="dots" aria-hidden="true"></span><span>£3.20</span></li> <!-- edit -->
+              <li><span>Seeded rye loaf</span><span class="dots" aria-hidden="true"></span><span>£4.80</span></li> <!-- edit -->
+              <li><span>Pear and almond tart <span class="tag">New</span></span><span class="dots" aria-hidden="true"></span><span>£4.20</span></li> <!-- edit -->
+              <li><span>Cheese and leek scone</span><span class="dots" aria-hidden="true"></span><span>£3.60</span></li> <!-- edit -->
+              <li><span>Vegan chocolate cookie</span><span class="dots" aria-hidden="true"></span><span>£2.50</span></li> <!-- edit -->
+            </ul>
+            <div class="board-special">
+              <p class="board-label">Soup of the day</p>
+              <p class="board-item">Roast tomato and red pepper, with a hunk of country white <span>£6.50</span></p> <!-- edit -->
+            </div>
+            <p class="note">When it is gone, it is gone. Want to be sure? Call and we will put one aside.</p> <!-- edit -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Inside the bakehouse</p>
+          <h2 id="gallery-title">Come in, find a seat by the window.</h2> <!-- edit -->
+        </div>
+        <!-- Delightful touch 3: each photo opens in a viewer (site.js). Without JavaScript, the link opens the large photo. -->
+        <ul class="gallery-grid">
+          <li class="g1 tall">
+            <figure>
+              <a class="gallery-link" href="/img/interior-1200.webp">
+                <picture>
+                  <img src="/img/interior-800.webp" srcset="/img/interior-480.webp 480w, /img/interior-800.webp 800w"
+                       sizes="(min-width: 74rem) 26rem, (min-width: 48rem) 36vw, 50vw"
+                       width="800" height="1066" loading="lazy" decoding="async"
+                       alt="Café tables and red stools by a tall window, with plants hanging from the ceiling."> <!-- edit -->
+                </picture>
+                <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+              </a>
+              <figcaption>Window seats, first come first served.</figcaption> <!-- edit -->
+            </figure>
+          </li>
+          <li class="g2">
+            <figure>
+              <a class="gallery-link" href="/img/buns-1200.webp">
+                <picture>
+                  <img src="/img/buns-800.webp" srcset="/img/buns-480.webp 480w, /img/buns-800.webp 800w"
+                       sizes="(min-width: 74rem) 23rem, (min-width: 48rem) 31vw, 50vw"
+                       width="800" height="800" loading="lazy" decoding="async"
+                       alt="A tray of iced cinnamon buns with caramel drizzled over the top."> <!-- edit -->
+                </picture>
+                <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+              </a>
+              <figcaption>Saturday cinnamon buns.</figcaption> <!-- edit -->
+            </figure>
+          </li>
+          <li class="g3">
+            <figure>
+              <a class="gallery-link" href="/img/latte-1200.webp">
+                <picture>
+                  <img src="/img/latte-800.webp" srcset="/img/latte-480.webp 480w, /img/latte-800.webp 800w"
+                       sizes="(min-width: 74rem) 23rem, (min-width: 48rem) 31vw, 50vw"
+                       width="800" height="800" loading="lazy" decoding="async"
+                       alt="A cappuccino with a leaf pattern, seen from above on a wooden table."> <!-- edit -->
+                </picture>
+                <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+              </a>
+              <figcaption>A flat white, done properly.</figcaption> <!-- edit -->
+            </figure>
+          </li>
+          <li class="g4 tall">
+            <figure>
+              <a class="gallery-link" href="/img/counter-1200.webp">
+                <picture>
+                  <img src="/img/counter-800.webp" srcset="/img/counter-480.webp 480w, /img/counter-800.webp 800w"
+                       sizes="(min-width: 74rem) 26rem, (min-width: 48rem) 36vw, 50vw"
+                       width="800" height="1066" loading="lazy" decoding="async"
+                       alt="A glass counter full of pastries and cakes, with shelves of jars behind it."> <!-- edit -->
+                </picture>
+                <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+              </a>
+              <figcaption>The counter at 9am.</figcaption> <!-- edit -->
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <!-- Use real quotes from your customers, with their permission. -->
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">What people say</p>
+          <h2 id="reviews-title">Rated 4.9 out of 5 by 212 people on Google.</h2> <!-- edit -->
+        </div>
+        <div class="reviews-grid">
+          <figure class="quote reveal">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <blockquote><p>The cardamom knots are the best thing I have eaten in years. I plan my Saturday around them.</p></blockquote> <!-- edit -->
+            <figcaption><strong>Hannah</strong>, a regular since 2019</figcaption> <!-- edit -->
+          </figure>
+          <figure class="quote reveal">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <blockquote><p>Proper coffee, kind staff and a window seat worth the wait. My favourite place to work for an hour.</p></blockquote> <!-- edit -->
+            <figcaption><strong>Sam</strong>, lives round the corner</figcaption> <!-- edit -->
+          </figure>
+          <figure class="quote reveal">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <blockquote><p>We ordered a birthday cake at short notice. It looked beautiful and tasted even better.</p></blockquote> <!-- edit -->
+            <figcaption><strong>Priya</strong>, ordered a celebration cake</figcaption> <!-- edit -->
+          </figure>
+        </div>
+        <a class="all-reviews" href="https://www.google.com/maps/search/?api=1&amp;query=Wren+%26+Rye+Bakehouse+Easterby" rel="noopener">Read all our reviews on Google <span aria-hidden="true">→</span></a> <!-- edit -->
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="about-media reveal">
+          <!-- Placeholder photo. See img/CREDITS.md. A photo of you or your shop works best. -->
+          <picture>
+            <img src="/img/about-800.webp" srcset="/img/about-480.webp 480w, /img/about-800.webp 800w"
+                 sizes="(min-width: 74rem) 32rem, (min-width: 52rem) 42vw, 100vw"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="Shelves of glass jars and an espresso machine in warm afternoon light."> <!-- edit -->
+          </picture>
+        </div>
+        <div class="about-text reveal">
+          <p class="eyebrow">Our story</p>
+          <h2 id="about-title">Two bakers, one old oven and <em>a lot of flour</em>.</h2> <!-- edit -->
+          <p>We opened Wren &amp; Rye in 2014 in the old print shop on Mill Lane. The oven came from a bakery that was closing down. It still does most of the work.</p> <!-- edit -->
+          <p>We bake the way we like to eat: slowly, with good flour, real butter and not much else. Our sourdough takes two days. Our croissants take three.</p> <!-- edit -->
+          <p>Most of our team live within a mile of the shop. Many of our customers do too. We know a lot of you by your usual order, and we like it that way.</p> <!-- edit -->
+          <p class="signature">Ellie &amp; Tom<small>Founders and bakers</small></p> <!-- edit -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOURS AND FIND US ===== -->
+    <section class="section visit" id="visit" aria-labelledby="visit-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Visit us</p>
+          <h2 id="visit-title">Find us on Mill Lane, by the river.</h2> <!-- edit -->
+        </div>
+        <div class="visit-grid">
+          <div class="panel reveal">
+            <h3 id="hours-title">Opening hours</h3>
+            <!-- HOURS TABLE. data-day: 1 = Monday ... 7 = Sunday. Times use the 24-hour clock.
+                 On a closed day, leave data-open and data-close empty. -->
+            <table class="hours" data-hours data-timezone="Europe/London" aria-labelledby="hours-title">
+              <tbody>
+                <tr data-day="1" data-open="" data-close=""><th scope="row">Monday</th><td>Closed</td></tr> <!-- edit -->
+                <tr data-day="2" data-open="07:30" data-close="16:00"><th scope="row">Tuesday</th><td>7.30am to 4pm</td></tr> <!-- edit -->
+                <tr data-day="3" data-open="07:30" data-close="16:00"><th scope="row">Wednesday</th><td>7.30am to 4pm</td></tr> <!-- edit -->
+                <tr data-day="4" data-open="07:30" data-close="16:00"><th scope="row">Thursday</th><td>7.30am to 4pm</td></tr> <!-- edit -->
+                <tr data-day="5" data-open="07:30" data-close="16:00"><th scope="row">Friday</th><td>7.30am to 4pm</td></tr> <!-- edit -->
+                <tr data-day="6" data-open="08:00" data-close="16:00"><th scope="row">Saturday</th><td>8am to 4pm</td></tr> <!-- edit -->
+                <tr data-day="7" data-open="09:00" data-close="14:00"><th scope="row">Sunday</th><td>9am to 2pm</td></tr> <!-- edit -->
+              </tbody>
+            </table>
+            <p class="helper">Bank holidays: we post our hours on Instagram the week before.</p> <!-- edit -->
+          </div>
+
+          <div class="panel find-us reveal">
+            <h3>Address</h3>
+            <address>
+              Wren &amp; Rye Bakehouse<br> <!-- edit -->
+              14 Mill Lane, Easterby<br> <!-- edit -->
+              EB1 4WR <!-- edit -->
+            </address>
+            <ul class="contact-list">
+              <li>Call <a href="tel:+441632960123">01632 960123</a></li> <!-- edit -->
+              <li>Email <a href="mailto:hello@example.co.uk">hello@example.co.uk</a></li> <!-- edit -->
+            </ul>
+
+            <!-- A simple drawing, not a live map. It loads nothing from Google.
+                 Change the street names in the <text> lines, or delete this <a> and the caption under it. -->
+            <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=14+Mill+Lane+Easterby+EB1+4WR" rel="noopener" aria-label="Get directions to 14 Mill Lane in Google Maps"> <!-- edit -->
+              <svg viewBox="0 0 640 360" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+                <rect class="land" width="640" height="360"/>
+                <path class="water" d="M0 300c90-30 160-10 240-28s150-70 240-60 120 30 160 18v130H0Z"/>
+                <rect class="park" x="430" y="40" width="170" height="110" rx="14"/>
+                <g class="block">
+                  <rect x="30" y="30" width="150" height="80" rx="6"/><rect x="30" y="150" width="150" height="80" rx="6"/>
+                  <rect x="230" y="30" width="150" height="80" rx="6"/><rect x="270" y="150" width="110" height="70" rx="6"/>
+                </g>
+                <g fill="none" stroke-linecap="round">
+                  <path class="road-main" stroke-width="22" d="M-10 130H660"/>
+                  <path class="road" stroke-width="14" d="M205 -10V280"/>
+                  <path class="road" stroke-width="12" d="M405 -10v250"/>
+                  <path class="road" stroke-width="10" d="M205 240c60 0 120-10 200-40"/>
+                </g>
+                <text class="label" x="232" y="135">HIGH STREET</text> <!-- edit -->
+                <text class="label" x="190" y="60" transform="rotate(-90 190 60)" text-anchor="end">MILL LANE</text> <!-- edit -->
+                <text class="label" x="452" y="100">THE GREEN</text> <!-- edit -->
+                <g transform="translate(232 196)">
+                  <circle r="26" class="pin" opacity=".18"/>
+                  <path class="pin" d="M0 6s-14-12-14-24a14 14 0 0 1 28 0C14-6 0 6 0 6Z"/>
+                  <circle cy="-18" r="5" fill="#fff"/>
+                </g>
+              </svg>
+            </a>
+            <p class="map-caption">A sketch of the streets. Tap it for a live map.</p>
+            <div class="button-row">
+              <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=14+Mill+Lane+Easterby+EB1+4WR" rel="noopener">Get directions</a> <!-- edit -->
+              <a class="btn btn-ghost" href="tel:+441632960123">Call 01632 960123</a> <!-- edit -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Good to know</p>
+          <h2 id="faq-title">Questions we hear a lot.</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Do I need to book a table?</summary> <!-- edit -->
+            <p>No. All our tables are walk-in. For a group of six or more, call us the day before and we will do our best.</p> <!-- edit -->
+          </details>
+          <details>
+            <summary>Can I order a cake or bread to collect?</summary> <!-- edit -->
+            <p>Yes. Give us 48 hours' notice by phone or email. Celebration cakes start at £32 and feed about twelve.</p> <!-- edit -->
+          </details>
+          <details>
+            <summary>Do you cater for allergies and vegan diets?</summary> <!-- edit -->
+            <p>Every item on the counter has a label with its allergens. We always have something vegan. We use nuts, gluten and dairy in one small kitchen, so we cannot promise that anything is free from traces.</p> <!-- edit -->
+          </details>
+          <details>
+            <summary>Is there step-free access and parking?</summary> <!-- edit -->
+            <p>Yes. The front door is level with the street and we have an accessible toilet. The nearest free car park is on the High Street, two minutes' walk away. There is a cycle rack outside.</p> <!-- edit -->
+          </details>
+          <details>
+            <summary>Are dogs welcome?</summary> <!-- edit -->
+            <p>Always. There is a water bowl by the door and a jar of dog biscuits on the counter.</p> <!-- edit -->
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
     <div class="wrap">
-      <p>© Your Business Name. Registered in England and Wales, company number 00000000.</p>
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Wren <em>&amp;</em> Rye Bakehouse</p> <!-- edit -->
+          <address>14 Mill Lane, Easterby, EB1 4WR</address> <!-- edit -->
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="tel:+441632960123">01632 960123</a></li> <!-- edit -->
+            <li><a href="mailto:hello@example.co.uk">hello@example.co.uk</a></li> <!-- edit -->
+          </ul>
+        </div>
+        <div>
+          <h2>Follow us</h2>
+          <ul>
+            <li><a href="https://www.instagram.com/your-account/" rel="noopener">Instagram</a></li> <!-- edit -->
+            <li><a href="https://www.facebook.com/your-page/" rel="noopener">Facebook</a></li> <!-- edit -->
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>© Wren &amp; Rye Bakehouse Ltd. Registered in England and Wales, company number 00000000.</p> <!-- edit -->
+        <p>Website template by <a href="https://17things.co.uk/cloudflare-free-plan">17 Things</a></p>
+      </div>
     </div>
   </footer>
+
+  <!-- ===== MOBILE ACTION BAR (shows on small screens only) ===== -->
+  <nav class="action-bar" aria-label="Call or get directions">
+    <a class="btn btn-primary" href="tel:+441632960123">Call us</a> <!-- edit -->
+    <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=14+Mill+Lane+Easterby+EB1+4WR" rel="noopener">Directions</a> <!-- edit -->
+  </nav>
+
+  <!-- Photo viewer for the gallery. site.js fills it in. -->
+  <dialog class="viewer" aria-label="Photo">
+    <button class="viewer-close" type="button" aria-label="Close photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <figure>
+      <img alt="" src="data:," width="1200" height="1200">
+      <figcaption></figcaption>
+    </figure>
+  </dialog>
 </body>
 </html>

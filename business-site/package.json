@@ -2,10 +2,11 @@
   "name": "business-site",
   "version": "1.0.0",
   "private": true,
-  "description": "A one-page small business website, hosted free on Cloudflare.",
+  "description": "A one-page website for a café or small business, hosted free on Cloudflare.",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "check": "node scripts/check.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.148.0"

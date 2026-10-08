@@ -1,91 +1,576 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
+<!--
+  ===================================================================
+  EDIT ME: YOUR BUSINESS FACTS
+  Every fact below appears in this file, in thanks.html, 404.html and
+  privacy.html. Use find and replace in each file to change them.
+  Lines you can change are marked with "edit" comments.
+
+  Business name ..... Fernlea Counselling
+  Your name ......... Elin Marsh
+  Town .............. Harrowfield
+  Address ........... The Garden Room, 14 Orchard Lane, Harrowfield HF2 7QL
+  Phone (shown) ..... 01632 960418
+  Phone (link) ...... +441632960418
+  Text (shown) ...... 07700 900418
+  Text (link) ....... +447700900418
+  Email ............. hello@example.co.uk
+  Web address ....... https://www.example.co.uk/
+  Prices ............ £65 room, £60 online, £70 walk and talk, £40 concession
+  Hours ............. the table under "OPENING HOURS" (and the JSON-LD)
+
+  This is a made-up business. The phone numbers are Ofcom drama numbers
+  and the address does not exist. Replace all of it with your own.
+  Your brand colour is the first line of styles.css.
+  ===================================================================
+-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Change these three lines first. -->
-  <title>Your Business Name | What you do, where</title>
-  <meta name="description" content="One or two sentences on what you do and who for. Google often shows this under your name.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23222'/%3E%3C/svg%3E">
-  <style>
-    :root { --ink: #1d1d1b; --muted: #5c5c57; --paper: #fbfaf7; --line: #e4e1da; --accent: #1f5c99; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font: 18px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); }
-    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
-    header { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--line); }
-    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; margin: 0 0 1rem; }
-    h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
-    p { margin: 0 0 1rem; }
-    .lead { font-size: 1.2rem; color: var(--muted); }
-    .button { display: inline-block; background: var(--accent); color: #fff; padding: 0.8rem 1.4rem; text-decoration: none; font-weight: 600; border-radius: 4px; }
-    ul.services { padding: 0; list-style: none; display: grid; gap: 1rem; }
-    ul.services li { background: #fff; border: 1px solid var(--line); padding: 1rem 1.25rem; border-radius: 4px; }
-    footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; }
-    a { color: var(--accent); }
-    form { display: grid; gap: 1rem; margin: 1.5rem 0; }
-    label { display: grid; gap: 0.3rem; font-weight: 600; }
-    input, textarea { font: inherit; padding: 0.7rem 0.8rem; border: 1px solid #c9c5bc; border-radius: 4px; background: #fff; }
-    textarea { min-height: 9rem; resize: vertical; }
-    button { font: inherit; cursor: pointer; border: 0; justify-self: start; }
-    .error { background: #fdecea; border: 1px solid #f5c2bd; padding: 0.75rem 1rem; border-radius: 4px; }
-  </style>
+  <!-- edit: title (under 60 characters) and description -->
+  <title>Fernlea Counselling | Counselling in Harrowfield and online</title>
+  <meta name="description" content="Calm, confidential counselling for anxiety, low mood, grief and life changes. In a quiet garden room in Harrowfield, or online. Book a free 20-minute call.">
+  <link rel="canonical" href="https://www.example.co.uk/">
+  <meta name="theme-color" content="#f5f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1615" media="(prefers-color-scheme: dark)">
+
+  <!-- Social sharing: what people see when they share your link -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Fernlea Counselling">
+  <meta property="og:title" content="Fernlea Counselling: a calm room to talk things through">
+  <meta property="og:description" content="Counselling for anxiety, low mood, grief and life changes, in Harrowfield and online. Book a free 20-minute call.">
+  <meta property="og:url" content="https://www.example.co.uk/">
+  <meta property="og:image" content="https://www.example.co.uk/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A bright counselling room with two armchairs by a tall window">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="/img/hero-room-1400.webp" imagesrcset="/img/hero-room-640.webp 640w, /img/hero-room-960.webp 960w, /img/hero-room-1400.webp 1400w, /img/hero-room-1800.webp 1800w" imagesizes="(min-width: 60rem) 46vw, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+  <!-- Turnstile, Cloudflare's free spam check. The only outside script. -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onTurnstileLoad" defer></script>
+
+  <!-- Business facts for Google. Change them when you change the page. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Fernlea Counselling",
+    "description": "Counselling for adults with anxiety, low mood, grief, stress and life changes. In person in Harrowfield and online.",
+    "url": "https://www.example.co.uk/",
+    "telephone": "+441632960418",
+    "email": "hello@example.co.uk",
+    "image": "https://www.example.co.uk/img/og-image.jpg",
+    "priceRange": "£40 to £70 per session",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "The Garden Room, 14 Orchard Lane",
+      "addressLocality": "Harrowfield",
+      "postalCode": "HF2 7QL",
+      "addressCountry": "GB"
+    },
+    "areaServed": ["Harrowfield", "United Kingdom (online)"],
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Thursday"], "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "15:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00" }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header>
+  <!-- Icons used on this page. You do not need to change these. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.8 4.6-2.3 1.5a11.5 11.5 0 0 0 6.2 6.2l1.5-2.3 4.6 1.8V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7.5 8 5.5 8-5.5"/></symbol>
+      <symbol id="i-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a2 2 0 0 1-2 2H8l-4 3.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 12.5h5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.2 2.7 2.7L16.2 9.5"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+      <symbol id="i-door" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21M3.5 21h17"/><circle cx="14.5" cy="12.5" r=".9" fill="currentColor"/></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16.5V12l2-5h12l2 5v4.5M4 16.5h16M4 16.5V19M20 16.5V19"/><circle cx="8" cy="13.5" r=".9" fill="currentColor"/><circle cx="16" cy="13.5" r=".9" fill="currentColor"/></symbol>
+      <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5Z"/><path d="M15.5 10.5h1.5a2.5 2.5 0 0 1 0 5h-1.6M8 3.5c0 1 1 1.5 1 2.5M11.5 3.5c0 1 1 1.5 1 2.5"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.8 14 -1.6 7 4.8-2.6 4.8 2.6-1.6-7"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14.75" stroke="currentColor" stroke-width="1.5"/><path d="M16 25.5V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 13.2c.1-3.2 2.1-5.7 5.8-6.6.6 3.8-1.6 6.4-5.8 6.6Z" fill="currentColor"/><path d="M16 18.4c-.1-2.8-2-4.9-5.3-5.6-.5 3.2 1.4 5.4 5.3 5.6Z" fill="currentColor"/><path d="M16 23c0-2.5 1.8-4.4 4.8-5 .5 2.9-1.3 4.8-4.8 5Z" fill="currentColor"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="top">
     <div class="wrap">
-      <h1>Your Business Name</h1>
-      <p class="lead">What you do, for whom, and where, in one sentence a customer would say out loud.</p>
-      <a class="button" href="#contact">Get in touch</a>
+      <a class="brand" href="/" aria-label="Fernlea Counselling, home">
+        <svg aria-hidden="true"><use href="#i-leaf"/></svg>
+        <span class="brand-name">Fernlea <small>Counselling</small></span><!-- edit -->
+      </a>
+      <nav class="nav" aria-label="Main">
+        <ul>
+          <li><a href="#help">How I help</a></li>
+          <li><a href="#sessions">Sessions and fees</a></li>
+          <li><a href="#about">About me</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </nav>
+      <a class="header-phone" href="tel:+441632960418"><svg aria-hidden="true"><use href="#i-phone"/></svg>01632 960418</a><!-- edit -->
+      <a class="button" href="#contact">Book a free call</a>
     </div>
   </header>
 
-  <main class="wrap">
-    <h2>What I do</h2>
-    <ul class="services">
-      <li><strong>First service.</strong> One line on what the customer gets.</li>
-      <li><strong>Second service.</strong> One line on what the customer gets.</li>
-      <li><strong>Third service.</strong> One line on what the customer gets.</li>
-    </ul>
+  <main id="main">
 
-    <h2>About</h2>
-    <p>Who you are, how long you have done this, and why a customer should pick you. Two or three sentences is plenty.</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Counselling in Harrowfield and online</p><!-- edit -->
+          <h1 id="hero-title">A calm room to talk things <em>through</em>.</h1><!-- edit -->
+          <p class="hero-lead">I help adults with anxiety, low mood, grief and big changes in life. We meet in my quiet garden room, or by video from your own sofa.</p><!-- edit -->
+          <div class="hero-actions">
+            <a class="button" href="#contact">Book a free 20-minute call</a>
+            <a class="button button--ghost" href="tel:+441632960418"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call 01632 960418</a><!-- edit -->
+          </div>
+          <ul class="proof">
+            <li><svg aria-hidden="true"><use href="#i-badge"/></svg>Accredited, 12 years in practice</li><!-- edit -->
+            <li><svg aria-hidden="true"><use href="#i-clock"/></svg>Evening sessions until 8pm</li>
+            <li><svg aria-hidden="true"><use href="#i-lock"/></svg>Private and confidential</li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <!-- Photo: placeholder, see img/CREDITS.md. Replace with your own room. -->
+          <img src="/img/hero-room-1400.webp"
+               srcset="/img/hero-room-640.webp 640w, /img/hero-room-960.webp 960w, /img/hero-room-1400.webp 1400w, /img/hero-room-1800.webp 1800w"
+               sizes="(min-width: 60rem) 46vw, 100vw"
+               width="1400" height="991" fetchpriority="high" decoding="async"
+               alt="A bright room with two cream armchairs facing each other by a tall window with soft curtains.">
+          <div class="hero-note">
+            <strong>Not sure where to start?</strong>
+            <p>A short, free call is the first step. No pressure, and no forms to fill in first.</p>
+            <button type="button" class="text-button breathe-open" data-breathe hidden>Or take one slow breath with me</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2 id="contact">Contact</h2>
-    <p class="error" id="form-error" hidden></p>
-    <form method="post" action="/api/contact">
-      <label>Your name <input name="name" autocomplete="name" required maxlength="200"></label>
-      <label>Your email <input name="email" type="email" autocomplete="email" required maxlength="320"></label>
-      <label>Your message <textarea name="message" required maxlength="5000"></textarea></label>
-      <div id="turnstile"></div>
-      <button class="button" type="submit">Send</button>
-    </form>
-    <p>Or call <a href="tel:+440000000000">00000 000000</a>, Monday to Friday, 9am to 5pm.</p>
+    <!-- ===== FACTS ===== -->
+    <section class="facts" aria-label="At a glance">
+      <ul class="wrap">
+        <li><strong>12 years</strong><span>in practice, with adults of every age</span></li><!-- edit -->
+        <li><strong>50 min</strong><span>sessions, weekly or fortnightly</span></li>
+        <li><strong>£65</strong><span>a session, with lower-cost places</span></li>
+        <li><strong>1 day</strong><span>to reply to your message, or sooner</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== HOW I HELP ===== -->
+    <section class="section reveal" id="help" aria-labelledby="help-title">
+      <div class="wrap help-grid">
+        <div>
+          <div class="section-head">
+            <p class="eyebrow">How I help</p>
+            <h2 id="help-title">You don’t need the right words. Just a place to start.</h2>
+            <p>People come to me for many reasons. Here are some of the most common. Choose one and I will add it to your message.</p>
+          </div>
+          <!-- Each link fills in the "What would you like help with?" box. Keep the data-topic words the same as the form options. -->
+          <ul class="chips">
+            <li><a class="chip" href="#contact" data-topic="Anxiety or worry">Anxiety and worry</a></li>
+            <li><a class="chip" href="#contact" data-topic="Low mood">Low mood</a></li>
+            <li><a class="chip" href="#contact" data-topic="Grief or loss">Grief and loss</a></li>
+            <li><a class="chip" href="#contact" data-topic="Stress or burnout">Stress and burnout</a></li>
+            <li><a class="chip" href="#contact" data-topic="Relationships">Relationships</a></li>
+            <li><a class="chip" href="#contact" data-topic="A big life change">Big life changes</a></li>
+            <li><a class="chip" href="#contact" data-topic="Self-esteem">Self-esteem</a></li>
+            <li><a class="chip" href="#contact" data-topic="I’m not sure yet">I’m not sure yet</a></li>
+          </ul>
+        </div>
+        <div class="help-aside">
+          <p><strong>How I work.</strong> I listen first. Then we find out together what would help. I draw on person-centred and CBT-informed ways of working. I won’t give you homework you don’t want.</p><!-- edit -->
+          <p>Some people come for six sessions. Some stay for a year. You decide, and you can stop at any time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SESSIONS AND FEES ===== -->
+    <section class="section sessions reveal" id="sessions" aria-labelledby="sessions-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Sessions and fees</p>
+          <h2 id="sessions-title">Three ways to meet</h2>
+          <p>Every session is 50 minutes. Pick what feels easiest. You can change your mind later.</p>
+        </div>
+        <ul class="cards">
+          <li class="card">
+            <!-- Photo: placeholder, see img/CREDITS.md -->
+            <img src="/img/armchair-window-800.webp" srcset="/img/armchair-window-480.webp 480w, /img/armchair-window-800.webp 800w"
+                 sizes="(min-width: 75rem) 23rem, (min-width: 48rem) 31vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A soft armchair beside a tall window, with house plants on a wooden floor.">
+            <h3>In the garden room</h3>
+            <p class="price">£65 <small>per session</small></p><!-- edit -->
+            <p>A quiet, private room at the end of my garden in Harrowfield. Its own entrance and a view of the trees.</p>
+            <ul>
+              <li>Daytime and evening times</li>
+              <li>Free parking on the lane</li>
+              <li>Step-free from the side gate</li>
+            </ul>
+          </li>
+          <li class="card">
+            <img src="/img/online-800.webp" srcset="/img/online-480.webp 480w, /img/online-800.webp 800w"
+                 sizes="(min-width: 75rem) 23rem, (min-width: 48rem) 31vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A laptop and a mug on a wooden desk, under shelves with plants and books.">
+            <h3>Online, from home</h3>
+            <p class="price">£60 <small>per session</small></p><!-- edit -->
+            <p>A private video call from wherever you feel safe. I send a secure link before each session.</p>
+            <ul>
+              <li>Anywhere in the UK</li>
+              <li>Early morning times</li>
+              <li>Phone sessions if you prefer</li>
+            </ul>
+          </li>
+          <li class="card">
+            <img src="/img/woodland-800.webp" srcset="/img/woodland-480.webp 480w, /img/woodland-800.webp 800w, /img/woodland-1200.webp 1200w"
+                 sizes="(min-width: 75rem) 23rem, (min-width: 48rem) 31vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                 alt="A quiet path through tall pine trees on a misty morning.">
+            <h3>Walk and talk</h3>
+            <p class="price">£70 <small>per session</small></p><!-- edit -->
+            <p>We talk side by side on a gentle woodland walk. Many people find it easier to open up this way.</p>
+            <ul>
+              <li>Flat, easy paths</li>
+              <li>Rain or shine (mostly)</li>
+              <li>Saturday mornings</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="fees-note">
+          <p><strong>Lower-cost places.</strong> I keep a few places at £40 for students, carers and people on a low income. You don’t need to prove anything. Just ask.</p><!-- edit -->
+          <a class="button" href="#contact">Ask about a place</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WORDS FROM CLIENTS ===== -->
+    <!-- Only use words that clients have agreed you can share. Change names to initials. -->
+    <section class="section voices" aria-labelledby="voices-title">
+      <div class="wrap">
+        <p class="eyebrow" id="voices-title">Words from past clients</p>
+        <div class="voices-grid">
+          <figure class="voice-main">
+            <blockquote>
+              <p>I came in braced for a lot of questions. Instead I found space, and someone who really listened. For the first time in months, I slept.</p><!-- edit -->
+            </blockquote>
+            <figcaption>R., after twelve sessions</figcaption>
+          </figure>
+          <ul class="voice-list">
+            <li>
+              <figure>
+                <blockquote><p>Elin never rushed me. When I finally talked about my dad, it felt safe to.</p></blockquote><!-- edit -->
+                <figcaption>J., grief counselling</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <blockquote><p>The online sessions fitted round the kids. I didn’t think video would work for me. It did.</p></blockquote><!-- edit -->
+                <figcaption>S., online sessions</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+        <p class="voices-small">Shared with permission. Names are changed.</p>
+      </div>
+    </section>
+
+    <!-- ===== THE ROOM ===== -->
+    <section class="section reveal" id="room" aria-labelledby="room-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">The room</p>
+          <h2 id="room-title">Quiet, warm and just for you</h2>
+          <p>Coming to a first session can feel like a lot. Here is what to expect when you arrive.</p>
+        </div>
+        <div class="room-grid">
+          <figure class="room-a">
+            <img src="/img/plant-window-1000.webp" srcset="/img/plant-window-640.webp 640w, /img/plant-window-1000.webp 1000w, /img/plant-window-1400.webp 1400w"
+                 sizes="(min-width: 75rem) 40rem, (min-width: 56rem) 54vw, 100vw" width="1000" height="750" loading="lazy" decoding="async"
+                 alt="A small palm in a pot on a wooden windowsill, with soft green light behind it.">
+            <figcaption>Morning light in the garden room</figcaption>
+          </figure>
+          <figure class="room-b">
+            <img src="/img/monstera-1000.webp" srcset="/img/monstera-640.webp 640w, /img/monstera-1000.webp 1000w"
+                 sizes="(min-width: 75rem) 32rem, (min-width: 56rem) 44vw, 100vw" width="1000" height="663" loading="lazy" decoding="async"
+                 alt="A leafy plant in a white pot on a bright windowsill.">
+          </figure>
+          <div class="room-facts">
+            <h3>When you arrive</h3>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-door"/></svg><div><strong>Its own entrance</strong><span>Come in by the side gate. You won’t pass through the house or meet anyone.</span></div></li><!-- edit -->
+              <li><svg aria-hidden="true"><use href="#i-car"/></svg><div><strong>Easy parking</strong><span>Free on the lane. The path to the door is flat and step-free.</span></div></li>
+              <li><svg aria-hidden="true"><use href="#i-cup"/></svg><div><strong>Tea, water and tissues</strong><span>Always there. Take what you need.</span></div></li>
+              <li><svg aria-hidden="true"><use href="#i-sun"/></svg><div><strong>Warm and light</strong><span>A soft chair, a window onto the trees, and no clock facing you.</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about reveal" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="about-media">
+          <!-- Photo: placeholder. A photo of you, your desk or your room works well here. -->
+          <img src="/img/journal-800.webp" srcset="/img/journal-480.webp 480w, /img/journal-800.webp 800w"
+               sizes="(min-width: 75rem) 30rem, (min-width: 56rem) 38vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+               alt="An open notebook and a pen on a round wooden table by a window.">
+        </div>
+        <div class="about-text">
+          <p class="eyebrow">About me</p>
+          <h2 id="about-title">Hello, I’m Elin.</h2><!-- edit -->
+          <p>I have been a counsellor for twelve years. Before that, I was a nurse. I know what it is like to carry a lot and to keep going anyway.</p><!-- edit -->
+          <p>In our sessions, you set the pace. Some weeks we talk about the big things. Some weeks we talk about the small things that turn out to be big. Both are fine.</p>
+          <p>I work with adults over 18. I see people from all walks of life, and I welcome you whoever you are and whoever you love.</p>
+          <p class="signature" aria-hidden="true">Elin Marsh</p><!-- edit -->
+          <ul class="creds">
+            <li><svg aria-hidden="true"><use href="#i-badge"/></svg>Accredited member of a UK professional body for counsellors</li><!-- edit: name your body, for example BACP or UKCP -->
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Diploma in person-centred counselling</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Regular clinical supervision and full insurance</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Enhanced DBS check</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT (the form is the star) ===== -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Get in touch</p>
+          <h2 id="contact-title">Take the first step, gently</h2>
+          <p>Here is what happens when you send a message.</p>
+        </div>
+
+        <ol class="steps">
+          <li><strong>You send a message</strong><span>A few lines is enough. Tell me only what you want to.</span></li>
+          <li><strong>I reply within one working day</strong><span>By email, or by phone if you ask. Never a sales call.</span></li><!-- edit -->
+          <li><strong>We have a free 20-minute call</strong><span>We see if we are a good fit. Then you decide, in your own time.</span></li>
+        </ol>
+
+        <div class="contact-grid">
+          <div class="form-card" id="form-card">
+            <div id="form-area">
+              <h3 class="form-title">Send me a message</h3>
+              <p class="form-intro">Everything you write stays between us. Boxes marked optional can be left empty.</p>
+
+              <div class="error-summary" id="error-summary" tabindex="-1" aria-labelledby="error-summary-title" hidden>
+                <h3 id="error-summary-title">There is a problem</h3>
+                <ul id="error-summary-list"></ul>
+              </div>
+
+              <form id="contact-form" method="post" action="/api/contact">
+                <div class="field-row">
+                  <div class="field">
+                    <label for="name">Your name</label>
+                    <span class="hint" id="name-hint">A first name is fine.</span>
+                    <p class="field-error" id="name-error" hidden></p>
+                    <input id="name" name="name" type="text" autocomplete="name" required maxlength="200" aria-describedby="name-hint">
+                  </div>
+                  <div class="field">
+                    <label for="email">Email address</label>
+                    <span class="hint" id="email-hint">I use it only to reply to you.</span>
+                    <p class="field-error" id="email-error" hidden></p>
+                    <input id="email" name="email" type="email" autocomplete="email" spellcheck="false" required maxlength="320" aria-describedby="email-hint">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="phone">Phone number <span class="optional">(optional)</span></label>
+                  <span class="hint" id="phone-hint">Only if you would like a call back. I won’t leave a voicemail unless you say it’s OK.</span>
+                  <p class="field-error" id="phone-error" hidden></p>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" aria-describedby="phone-hint">
+                </div>
+
+                <div class="field">
+                  <label for="topic">What would you like help with? <span class="optional">(optional)</span></label>
+                  <select id="topic" name="topic">
+                    <option>I’m not sure yet</option>
+                    <option>Anxiety or worry</option>
+                    <option>Low mood</option>
+                    <option>Grief or loss</option>
+                    <option>Stress or burnout</option>
+                    <option>Relationships</option>
+                    <option>A big life change</option>
+                    <option>Self-esteem</option>
+                    <option>Something else</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="message">Your message</label>
+                  <span class="hint" id="message-hint">A few lines is plenty. You might say what is going on, and which days or times suit you.</span>
+                  <p class="field-error" id="message-error" hidden></p>
+                  <textarea id="message" name="message" rows="6" required maxlength="5000" aria-describedby="message-hint message-count"></textarea>
+                  <span class="counter" id="message-count"></span>
+                </div>
+
+                <!-- A hidden box that only spam robots fill in. Leave it here. -->
+                <div class="hp" aria-hidden="true">
+                  <label for="company">Leave this empty</label>
+                  <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="turnstile-box">
+                  <div id="turnstile"></div>
+                  <noscript><p class="hint">This form needs JavaScript for its spam check. You can also call 01632 960418 or email hello@example.co.uk.</p></noscript><!-- edit -->
+                </div>
+
+                <div class="privacy-note">
+                  <svg aria-hidden="true"><use href="#i-lock"/></svg>
+                  <p>Only I read your message. I keep it safely and never share it. If we don’t work together, I delete it after 12 months. <a href="/privacy">How I look after your details</a>.</p><!-- edit -->
+                </div>
+
+                <div class="submit-row">
+                  <button class="button" type="submit" id="send"><span class="spinner" aria-hidden="true"></span><span id="send-label">Send message</span></button>
+                  <p class="reply-promise"><svg aria-hidden="true"><use href="#i-clock"/></svg>I reply within one working day.</p><!-- edit -->
+                </div>
+                <p class="visually-hidden" id="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+
+          <aside class="contact-aside" aria-label="Other ways to get in touch">
+            <img src="/img/tea-800.webp" srcset="/img/tea-480.webp 480w, /img/tea-800.webp 800w"
+                 sizes="(min-width: 75rem) 26rem, (min-width: 62rem) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                 alt="Two hands dip a tea bag into a white mug.">
+            <ul class="ways">
+              <li><a href="tel:+441632960418"><span class="ico"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><span><small>Call</small><strong>01632 960418</strong></span></a></li><!-- edit -->
+              <li><a href="sms:+447700900418"><span class="ico"><svg aria-hidden="true"><use href="#i-text"/></svg></span><span><small>Text, if talking feels hard</small><strong>07700 900418</strong></span></a></li><!-- edit -->
+              <li><a href="mailto:hello@example.co.uk"><span class="ico"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Email</small><strong>hello@example.co.uk</strong></span></a></li><!-- edit -->
+            </ul>
+
+            <!-- ===== OPENING HOURS =====
+                 data-day: 1 is Monday, 7 is Sunday. Times are 24-hour, UK time.
+                 The "Open now" badge reads these. Leave data-open empty on a closed day. -->
+            <div class="hours">
+              <div class="hours-head">
+                <h3>Phone lines</h3>
+                <span class="status" id="open-status" hidden></span>
+              </div>
+              <table>
+                <caption class="visually-hidden">Opening hours</caption>
+                <tbody>
+                  <tr data-day="1" data-open="09:00" data-close="20:00"><th scope="row">Monday</th><td>9am to 8pm</td></tr>
+                  <tr data-day="2" data-open="09:00" data-close="20:00"><th scope="row">Tuesday</th><td>9am to 8pm</td></tr>
+                  <tr data-day="3" data-open="09:00" data-close="17:00"><th scope="row">Wednesday</th><td>9am to 5pm</td></tr>
+                  <tr data-day="4" data-open="09:00" data-close="20:00"><th scope="row">Thursday</th><td>9am to 8pm</td></tr>
+                  <tr data-day="5" data-open="09:00" data-close="15:00"><th scope="row">Friday</th><td>9am to 3pm</td></tr>
+                  <tr data-day="6" data-open="09:00" data-close="13:00"><th scope="row">Saturday</th><td>9am to 1pm</td></tr>
+                  <tr data-day="7" data-open="" data-close=""><th scope="row">Sunday</th><td>Closed</td></tr>
+                </tbody>
+              </table>
+              <p class="hours-note">If I’m with a client, leave a message and I’ll call you back the same day.</p>
+            </div>
+
+            <div class="crisis">
+              <p><strong>Need help right now?</strong> This form is not for emergencies. If you are in danger, call 999. You can talk to Samaritans any time, free, on <a href="tel:116123">116 123</a>.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section reveal" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-title">Things people often ask</h2>
+          <p>If your question isn’t here, ask it in your message. There are no silly questions.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Is what I say kept private?</summary>
+            <div><p>Yes. What you say stays between us. There are rare limits, for example if I think someone is at serious risk of harm. I explain these in our first call, so there are no surprises.</p></div>
+          </details>
+          <details>
+            <summary>How many sessions will I need?</summary>
+            <div><p>It depends on you. Some people feel better after six sessions. Others like to keep going for longer. We check in together every few weeks, and you can stop whenever you want.</p></div>
+          </details>
+          <details>
+            <summary>What happens in the free call?</summary>
+            <div><p>We talk for about 20 minutes. You tell me a little about what is going on, and you can ask me anything. At the end, there is no pressure to book. Many people take a few days to decide.</p></div>
+          </details>
+          <details>
+            <summary>What if I need to cancel?</summary>
+            <div><p>Please give me 48 hours’ notice and there is no charge. Life happens, so I am flexible when something comes up at short notice.</p></div><!-- edit -->
+          </details>
+          <details>
+            <summary>Do you see young people or couples?</summary>
+            <div><p>I work with adults over 18, one to one. If you need something else, I am happy to suggest someone I trust.</p></div>
+          </details>
+          <details>
+            <summary>Can I pay with my health insurance?</summary>
+            <div><p>Some insurers cover counselling. Ask your insurer first, then tell me which company it is in your message, and I will check.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
     <div class="wrap">
-      <p>© Your Business Name. Registered in England and Wales, company number 00000000.</p>
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Fernlea Counselling</p><!-- edit -->
+          <address>The Garden Room, 14 Orchard Lane<br>Harrowfield HF2 7QL</address><!-- edit -->
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Harrowfield">Get directions</a></p><!-- edit: put your own address after query= -->
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="tel:+441632960418">01632 960418</a></li><!-- edit -->
+            <li><a href="mailto:hello@example.co.uk">hello@example.co.uk</a></li><!-- edit -->
+          </ul>
+        </div>
+        <div>
+          <h2>This site</h2>
+          <ul>
+            <li><a href="#sessions">Sessions and fees</a></li>
+            <li><a href="#faq">Questions</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>© Fernlea Counselling. Elin Marsh, sole trader.</p><!-- edit -->
+        <p>A free template by <a href="https://17things.co.uk/cloudflare-free-plan">17 Things</a>. Photos from Pexels.</p>
+      </div>
     </div>
   </footer>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-  <script>
-    // Show why a message did not send, if the server sent the visitor back.
-    const errors = {
-      missing: 'Please fill in your name, email and message.',
-      spam: 'The spam check did not pass. Please try again.',
-      invalid: 'Something went wrong. Please try again.',
-    };
-    const reason = new URLSearchParams(location.search).get('error');
-    if (reason) {
-      const box = document.getElementById('form-error');
-      box.textContent = errors[reason] || errors.invalid;
-      box.hidden = false;
-    }
-    // Turnstile, the free spam check. The site key comes from the Worker.
-    window.addEventListener('load', async () => {
-      const { siteKey } = await fetch('/api/config').then((r) => r.json());
-      turnstile.render('#turnstile', { sitekey: siteKey });
-    });
-  </script>
+
+  <!-- Phone-sized screens: a bar with the two main actions -->
+  <div class="action-bar">
+    <a class="button button--ghost" href="tel:+441632960418"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call</a><!-- edit -->
+    <a class="button" href="#contact">Book a free call</a>
+  </div>
+
+  <!-- A one-minute breathing exercise. Opens from the hero. -->
+  <dialog class="breathe" id="breathe" aria-labelledby="breathe-title">
+    <div class="breathe-inner">
+      <h2 id="breathe-title">One slow breath</h2>
+      <p>Follow the circle. In as it grows, out as it shrinks.</p>
+      <div class="breathe-circle" id="breathe-circle"><span class="breathe-word" id="breathe-word" aria-live="polite">Ready</span></div>
+      <button type="button" class="button button--light" id="breathe-close">I’m done, thank you</button>
+    </div>
+  </dialog>
 </body>
 </html>

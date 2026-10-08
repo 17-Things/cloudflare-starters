@@ -1,0 +1,6 @@
+# Change the Sitemap line to your own web address.
+User-agent: *
+Disallow: /messages
+Disallow: /thanks
+
+Sitemap: https://www.example.co.uk/sitemap.xml

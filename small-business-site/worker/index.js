@@ -11,7 +11,7 @@
 
 import { EmailMessage } from 'cloudflare:email';
 
-const LIMITS = { name: 120, email: 200, phone: 40, type: 80, message: 5000, page: 200 };
+const LIMITS = { name: 120, email: 200, phone: 40, postcode: 12, type: 80, message: 5000, page: 200 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DEFAULT_PASSWORD = 'choose-a-long-password';
 const PAGE_SIZE = 50;
@@ -51,6 +51,7 @@ async function handleEnquiry(request, env) {
     name: get('name'),
     email: get('email'),
     phone: get('phone'),
+    postcode: get('postcode').toUpperCase(),
     type: get('type'),
     message: get('message'),
     page: get('page'),
@@ -58,6 +59,7 @@ async function handleEnquiry(request, env) {
     country: request.cf?.country || '',
   };
   if (!entry.name || !entry.email || !entry.message) return fail('Please complete your name, email and message.');
+  if (/[\r\n]/.test(entry.name + entry.email + entry.phone + entry.postcode + entry.type)) return fail('Please check your details.');
   if (!EMAIL_RE.test(entry.email)) return fail('Please check your email address.');
 
   // Light rate limit: 8 messages an hour from one connection. The IP address is hashed, not stored.
@@ -80,7 +82,7 @@ async function handleEnquiry(request, env) {
 // Cloudflare Email Routing. Builds a plain-text email by hand, so there is no dependency.
 // https://developers.cloudflare.com/email-routing/email-workers/send-email-workers/
 async function sendEmail(env, e) {
-  const rows = [['Name', e.name], ['Email', e.email], ['Phone', e.phone], ['About', e.type], ['Sent from', e.page], ['Received', e.receivedAt]]
+  const rows = [['Name', e.name], ['Email', e.email], ['Phone', e.phone], ['Postcode', e.postcode], ['About', e.type], ['Sent from', e.page], ['Received', e.receivedAt]]
     .filter(([, v]) => v);
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n') + `\n\n${e.message}\n`;
   const subject = `Enquiry: ${e.type || 'General'} from ${e.name}`;
@@ -131,13 +133,17 @@ async function listEnquiries(request, env, url) {
   const entries = await Promise.all(list.keys.map((k) => env.ENQUIRIES.get(k.name, 'json')));
   const items = entries.filter(Boolean).map(
     (e) => `<article>
-  <p class="meta"><strong>${escapeHtml(e.name)}</strong> · <a href="mailto:${escapeHtml(e.email)}">${escapeHtml(e.email)}</a>${e.phone ? ` · ${escapeHtml(e.phone)}` : ''} · ${escapeHtml(e.receivedAt.replace('T', ' ').slice(0, 16))} UTC</p>
-  ${e.type ? `<p class="meta">About: ${escapeHtml(e.type)}</p>` : ''}
-  <p>${escapeHtml(e.message).replace(/\n/g, '<br>')}</p>
+  <header>
+    ${e.type ? `<p class="tag">${escapeHtml(e.type)}</p>` : ''}
+    <p class="when">${escapeHtml(e.receivedAt.replace('T', ' ').slice(0, 16))} UTC</p>
+  </header>
+  <h2>${escapeHtml(e.name)}</h2>
+  <p class="meta"><a href="mailto:${escapeHtml(e.email)}">${escapeHtml(e.email)}</a>${e.phone ? ` · <a href="tel:${escapeHtml(e.phone.replace(/[^\d+]/g, ''))}">${escapeHtml(e.phone)}</a>` : ''}${e.postcode ? ` · ${escapeHtml(e.postcode)}` : ''}</p>
+  <p class="msg">${escapeHtml(e.message).replace(/\n/g, '<br>')}</p>
 </article>`
   );
-  const more = list.list_complete ? '' : `<p><a href="/enquiries?cursor=${encodeURIComponent(list.cursor)}">Older enquiries</a></p>`;
-  return html('Enquiries', `<h1>Enquiries</h1><p>Newest first, ${PAGE_SIZE} a page.</p>${items.join('\n') || '<p>No enquiries yet.</p>'}${more}`);
+  const more = list.list_complete ? '' : `<p><a class="btn" href="/enquiries?cursor=${encodeURIComponent(list.cursor)}">Older enquiries</a></p>`;
+  return html('Enquiries', `<h1>Enquiries</h1><p class="sub">Newest first, ${PAGE_SIZE} a page. Click an email address to reply.</p>${items.join('\n') || '<p class="empty">No enquiries yet. When someone sends the quote form, it shows here.</p>'}${more}`);
 }
 
 function done(wantsJson, request) {
@@ -151,8 +157,25 @@ function json(body, status = 200, headers = {}) {
 function html(title, body, status = 200) {
   return new Response(
     `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>${escapeHtml(title)}</title>
-<style>body{margin:0 auto;max-width:44rem;padding:2rem 1.25rem;font:17px/1.6 system-ui,sans-serif;color:#1d1d1b;background:#fbfaf7}article{background:#fff;border:1px solid #e4e1da;border-radius:4px;padding:1rem 1.25rem;margin:0 0 1rem}.meta{color:#5c5c57;font-size:.9rem;margin:0 0 .5rem}a{color:#a8461f}</style>
-</head><body>${body}</body></html>`,
+<style>
+:root{color-scheme:light dark;--bg:#f6f3ee;--card:#fffdf9;--ink:#1c2430;--muted:#4f5866;--line:#ddd5c8;--brand:#f5b301}
+@media (prefers-color-scheme:dark){:root{--bg:#12161d;--card:#181e27;--ink:#eef0f3;--muted:#adb5c1;--line:#2d3541}}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+body::before{content:"";display:block;height:10px;background:var(--brand)}
+main{max-width:46rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1{font-size:2.2rem;line-height:1.1;letter-spacing:-.03em;margin:0 0 .25rem}
+.sub,.empty{color:var(--muted)}
+article{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--brand);border-radius:6px;padding:1.1rem 1.35rem;margin:0 0 1rem}
+article header{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+article h2{font-size:1.2rem;margin:.4rem 0 .1rem}
+.tag{display:inline-block;margin:0;background:#1c2430;color:#f5b301;font-size:.8rem;font-weight:700;padding:.15rem .55rem;border-radius:4px}
+.when,.meta{color:var(--muted);font-size:.92rem;margin:0}
+.msg{margin:.75rem 0 0;white-space:normal}
+a{color:inherit;text-decoration-color:var(--brand);text-decoration-thickness:2px;text-underline-offset:.2em}
+a:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+.btn{display:inline-block;background:var(--brand);color:#1c2430;font-weight:700;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none}
+</style>
+</head><body><main>${body}</main></body></html>`,
     { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } }
   );
 }

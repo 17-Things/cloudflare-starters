@@ -1,0 +1,12 @@
+{
+  "name": "Fernlea Counselling",
+  "short_name": "Fernlea",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#2b6a6c",
+  "background_color": "#f5f7f4",
+  "display": "browser"
+}
